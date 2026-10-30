@@ -1,0 +1,1193 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Artisanat des Hautes Terres de Madagascar : soubiques en raphia, terre cuite, palissandre, soie sauvage. Examinez chaque pièce sur un étal en 3D et commandez par WhatsApp, livraison à Antsirabe et Antananarivo.">
+<title>Atelier Tanana</title>
+<!-- Remplacer https://atelier-tanana.example/ par l'adresse réelle du site une fois en ligne -->
+<link rel="canonical" href="https://atelier-tanana.example/">
+<meta name="theme-color" content="#0d1714">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect x='1' y='1' width='28' height='28' rx='9' fill='%23e2b04f'/%3E%3Cpath d='M7 11h16M7 15h16M7 19h16' stroke='%231a1408' stroke-width='2' stroke-linecap='round' opacity='.5'/%3E%3Cpath d='M11 7v16M15 7v16M19 7v16' stroke='%231a1408' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Atelier Tanana">
+<meta property="og:title" content="Atelier Tanana · Le marché du soir, à portée de main">
+<meta property="og:description" content="Raphia, terre cuite, palissandre, soie sauvage. Examinez chaque pièce sur un étal en 3D, commandez par WhatsApp.">
+<meta property="og:url" content="https://atelier-tanana.example/">
+<meta property="og:image" content="https://atelier-tanana.example/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Étal de marché en 3D sous un auvent rayé : paniers en raphia, jarres, zébu sculpté, lambas en soie.">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Store","@id":"https://atelier-tanana.example/#store","name":"Atelier Tanana","url":"https://atelier-tanana.example/","image":"https://atelier-tanana.example/og-image.jpg","description":"Artisanat des Hautes Terres de Madagascar, vendu sans intermédiaire.","telephone":"+261340000000","priceRange":"28 000 – 120 000 Ar","currenciesAccepted":"MGA","paymentAccepted":"Espèces à la livraison, MVola, Orange Money","address":{"@type":"PostalAddress","streetAddress":"Marché couvert","addressLocality":"Antsirabe","addressCountry":"MG"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"18:00"}],"areaServed":["Antsirabe","Antananarivo"]}
+]}
+</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+/* Layout : étal 3D plein écran sous un header transparent, intro caméra cinématique ; puis bandes éditoriales (atelier, bandeau des savoir-faire, geste, collection, commande) sur 1180px, clôturées par un grand mot-marque. */
+:root{
+  --bg:#0d1714; --surface:#14211d; --surface-2:#1b2b26; --line:#28392f; --line-strong:#3a4f45;
+  --fg:#f1e9d6; --muted:#a2ac9e; --raffia:#e2b04f; --raffia-ink:#1a1408; --laterite:#e07c5c;
+  --on-scene:#f8f1e1; --scene-dim:rgba(7,11,10,.74);
+  --display:"Gloock", "Georgia", "Times New Roman", serif;
+  --body:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#edefe7; --surface:#fafaf5; --surface-2:#e2e6da; --line:#d0d6c8; --line-strong:#aab4a5;
+    --fg:#17201c; --muted:#4f5a53; --raffia:#8a5d0d; --raffia-ink:#fff8ea; --laterite:#a8432a;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#edefe7; --surface:#fafaf5; --surface-2:#e2e6da; --line:#d0d6c8; --line-strong:#aab4a5;
+  --fg:#17201c; --muted:#4f5a53; --raffia:#8a5d0d; --raffia-ink:#fff8ea; --laterite:#a8432a;
+  color-scheme:light;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html.lenis,html.lenis body{height:auto}
+html.lenis{scroll-behavior:auto}
+.lenis.lenis-stopped{overflow:hidden}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.04;text-wrap:balance;margin:0;letter-spacing:-.01em}
+p{margin:0}
+button{font:inherit;color:inherit}
+::selection{background:var(--raffia);color:var(--raffia-ink)}
+:focus-visible{outline:2px solid var(--raffia);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:700px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--raffia);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:18px;height:1px;background:currentColor;opacity:.7}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---------- Header ---------- */
+.top{position:fixed;z-index:30;top:0;left:0;right:0;padding-top:env(safe-area-inset-top,0px);color:var(--on-scene);border-bottom:1px solid transparent;transition:background .5s var(--ease),border-color .5s,color .5s,transform .5s var(--ease)}
+.top.scrolled{background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-color:var(--line);color:var(--fg)}
+.top.hide{transform:translateY(-100%)}
+.top .wrap{display:flex;align-items:center;gap:28px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-family:var(--display);font-size:1.45rem}
+.brand svg{width:30px;height:30px;flex:none}
+.nav{display:flex;gap:4px;margin-left:auto}
+.nav a{position:relative;color:inherit;opacity:.78;text-decoration:none;font-size:.93rem;padding:8px 12px;border-radius:999px;transition:opacity .25s,background .25s}
+.nav a:hover{opacity:1;background:color-mix(in srgb,currentColor 9%,transparent)}
+.cart-btn{display:inline-flex;align-items:center;gap:9px;border:1px solid color-mix(in srgb,currentColor 24%,transparent);background:color-mix(in srgb,currentColor 7%,transparent);color:inherit;border-radius:999px;padding:8px 10px 8px 14px;cursor:pointer;font-size:.92rem;font-weight:500;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:border-color .25s,transform .35s var(--ease)}
+.cart-btn:hover{border-color:var(--raffia)}
+.cart-btn svg{width:18px;height:18px}
+.badge{min-width:24px;height:24px;border-radius:999px;background:var(--raffia);color:var(--raffia-ink);font-family:var(--mono);font-size:.74rem;display:inline-grid;place-items:center;padding:0 7px}
+.badge.bump{animation:bump .55s var(--ease)}
+@keyframes bump{30%{transform:scale(1.4)}60%{transform:scale(.9)}}
+@media (max-width:760px){.nav{display:none}.cart-btn{margin-left:auto}}
+
+/* ---------- Stage ---------- */
+.stage{position:relative;height:clamp(600px,96svh,960px);overflow:hidden;background:#1d1719;isolation:isolate}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;touch-action:pan-y}
+.stage.fine canvas{cursor:none}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:
+    radial-gradient(120% 90% at 60% 45%,transparent 55%,rgba(5,8,7,.55) 100%),
+    linear-gradient(90deg,var(--scene-dim) 0%,rgba(7,11,10,.38) 32%,transparent 56%),
+    linear-gradient(0deg,rgba(7,11,10,.6) 0%,transparent 26%)}
+.grain{position:absolute;inset:-50%;z-index:1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+
+.stage-copy{position:absolute;z-index:2;left:0;top:0;max-width:680px;padding-top:calc(env(safe-area-inset-top,0px) + clamp(110px,16vh,170px));padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:24px;color:var(--on-scene);pointer-events:none;will-change:transform,opacity}
+@media (min-width:700px){.stage-copy{padding-left:max(40px,env(safe-area-inset-left,0px))}}
+.stage-copy .eyebrow{color:#ecc06a;animation:fadeUp .9s var(--ease) .15s both}
+.stage-copy h1{font-size:clamp(2.7rem,6.4vw,5.6rem);margin-top:20px}
+.ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.ln>span{display:inline-block;animation:rise 1.2s var(--ease) both}
+.ln:nth-child(1)>span{animation-delay:.25s}
+.ln:nth-child(2)>span{animation-delay:.4s}
+.accent{position:relative;color:#ecc06a}
+.accent svg{position:absolute;left:-2%;bottom:-.12em;width:104%;height:.32em;overflow:visible}
+.accent path{fill:none;stroke:#ecc06a;stroke-width:3;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:0;animation:draw 1.4s var(--ease) 1.1s both}
+@keyframes draw{from{stroke-dashoffset:420}}
+@keyframes rise{from{transform:translateY(108%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+.stage-copy p{margin-top:24px;max-width:44ch;font-size:1.1rem;color:rgba(248,241,225,.84);animation:fadeUp 1s var(--ease) .7s both}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;pointer-events:auto;animation:fadeUp 1s var(--ease) .85s both}
+.stage.is-focus .stage-copy{opacity:0!important;transform:translateY(-12px)!important;transition:opacity .45s,transform .45s}
+
+.stage-foot{position:absolute;z-index:2;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px calc(22px + env(safe-area-inset-bottom,0px));padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));pointer-events:none;transition:opacity .45s;animation:fadeUp 1s var(--ease) 1.2s both}
+@media (min-width:700px){.stage-foot{padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}}
+.stage.is-focus .stage-foot{opacity:0}
+.hints{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.hints li{font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--on-scene);background:rgba(10,14,13,.42);border:1px solid rgba(248,241,225,.16);border-radius:999px;padding:7px 12px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hints b{color:#ecc06a;font-weight:500}
+.scroll-cue{position:absolute;z-index:2;left:50%;bottom:calc(26px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:grid;justify-items:center;gap:8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(248,241,225,.7);pointer-events:none;transition:opacity .4s}
+.scroll-cue i{width:1px;height:38px;background:linear-gradient(rgba(248,241,225,.7),transparent);transform-origin:top;animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+.stage.is-focus .scroll-cue{opacity:0}
+@media (max-width:1400px){.scroll-cue{display:none}}
+.mood{display:flex;gap:2px;background:rgba(10,14,13,.5);border:1px solid rgba(248,241,225,.18);border-radius:999px;padding:4px;pointer-events:auto;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);position:relative}
+.mood button{position:relative;z-index:1;border:0;background:transparent;color:var(--on-scene);border-radius:999px;padding:8px 15px;font-size:.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:color .35s}
+.mood button[aria-pressed="true"]{color:#1a1408}
+.mood .pill{position:absolute;z-index:0;top:4px;bottom:4px;border-radius:999px;background:#ecc06a;transition:left .5s var(--ease),width .5s var(--ease)}
+.mood svg{width:15px;height:15px}
+
+.hover-tag{position:absolute;z-index:2;left:0;top:0;transform:translate(-50%,-100%) translateY(6px);pointer-events:none;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:8px 12px;white-space:nowrap;box-shadow:0 12px 30px rgba(0,0,0,.28);opacity:0;transition:opacity .2s,transform .3s var(--ease)}
+.hover-tag.show{opacity:1;transform:translate(-50%,-100%)}
+.hover-tag strong{display:block;font-weight:600;font-size:.9rem}
+.hover-tag span{font-family:var(--mono);font-size:.76rem;color:var(--raffia)}
+.gl-fallback{position:absolute;inset:0;z-index:2;display:grid;place-items:center;text-align:center;color:var(--on-scene);padding:24px}
+
+/* custom cursor (stage only, fine pointers) */
+.cursor{position:fixed;z-index:70;left:0;top:0;pointer-events:none;opacity:0;transition:opacity .25s}
+.cursor.show{opacity:1}
+.cursor .dot{position:absolute;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#ecc06a}
+.cursor .ring{position:absolute;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:999px;border:1px solid rgba(248,241,225,.7);display:grid;place-items:center;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .35s,border-color .35s}
+.cursor .ring span{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#1a1408;opacity:0;transition:opacity .2s;white-space:nowrap}
+.cursor.big .ring{width:92px;height:92px;margin:-46px 0 0 -46px;background:#ecc06a;border-color:#ecc06a}
+.cursor.big .ring span{opacity:1}
+.cursor.big .dot{opacity:0}
+
+/* ---------- Detail panel ---------- */
+.detail{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 84px);bottom:20px;right:max(20px,env(safe-area-inset-right,0px));width:min(392px,calc(100% - 40px));background:color-mix(in srgb,var(--surface) 90%,transparent);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:16px;overflow:auto;transform:translateX(calc(100% + 48px));visibility:hidden;transition:transform .7s var(--ease),visibility 0s linear .7s;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.detail.open{transform:none;visibility:visible;transition:transform .7s var(--ease)}
+.detail>*{transition:opacity .4s,transform .5s var(--ease)}
+.detail.swap>.anim{opacity:0;transform:translateY(8px);transition:none}
+.detail-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.idx{font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.idx b{color:var(--fg);font-weight:500}
+.icon-btn{width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:transparent;cursor:pointer;display:grid;place-items:center;font-size:1.15rem;line-height:1;transition:border-color .25s,transform .35s var(--ease)}
+.icon-btn:hover{border-color:var(--raffia);transform:rotate(90deg)}
+.detail h2{font-size:2.15rem}
+.detail-meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:.72rem;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--muted)}
+.chip.stock{color:var(--laterite);border-color:color-mix(in srgb,var(--laterite) 40%,transparent)}
+.detail-desc{color:var(--muted);max-width:44ch}
+.detail-buy{margin-top:auto;display:grid;gap:14px;padding-top:18px;border-top:1px solid var(--line)}
+.buy-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.price{font-family:var(--mono);font-size:1.35rem;font-variant-numeric:tabular-nums}
+.stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px}
+.stepper button{width:36px;height:36px;border:0;background:transparent;cursor:pointer;border-radius:999px;font-size:1.05rem}
+.stepper button:hover{background:var(--surface-2)}
+.stepper output{min-width:28px;text-align:center;font-family:var(--mono);font-size:.88rem}
+.strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.strip button{flex:none;width:52px;height:52px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);cursor:pointer;padding:2px;transition:border-color .25s,transform .35s var(--ease)}
+.strip button:hover{transform:translateY(-2px)}
+.strip button[aria-current="true"]{border-color:var(--raffia);box-shadow:0 0 0 1px var(--raffia)}
+.strip img{width:100%;height:100%;object-fit:contain}
+.detail-nav{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.link-btn{border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:.86rem;padding:6px 2px;transition:color .2s}
+.link-btn:hover{color:var(--fg)}
+.drag-hint{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+@media (max-width:760px){
+  .detail{left:12px;right:12px;top:auto;bottom:12px;width:auto;max-height:60%;transform:translateY(calc(100% + 30px));padding:18px;border-radius:20px;gap:12px}
+  .detail h2{font-size:1.65rem}
+  .detail-desc{font-size:.94rem}
+  .strip{display:none}
+}
+@media (max-width:600px){
+  .stage-copy{padding-top:calc(env(safe-area-inset-top,0px) + 92px)}
+  .stage-copy h1{font-size:2.15rem}
+  .stage-copy p{font-size:.95rem;margin-top:14px}
+  .hero-cta{margin-top:20px}
+  .hero-cta .btn{padding:11px 16px;font-size:.88rem}
+  .hints li:not(:first-child){display:none}
+}
+
+/* ---------- Buttons ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;padding:13px 22px;font-weight:600;font-size:.95rem;cursor:pointer;border:1px solid var(--line-strong);background:transparent;text-decoration:none;color:var(--fg);overflow:hidden;transition:border-color .25s,transform .4s var(--ease),background .25s}
+.btn:hover{border-color:var(--raffia)}
+.btn.primary{background:var(--raffia);color:var(--raffia-ink);border-color:var(--raffia)}
+.btn.primary::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s var(--ease)}
+.btn.primary:hover::after{transform:translateX(120%)}
+.btn.small{padding:9px 15px;font-size:.85rem}
+.btn.ghost-scene{color:var(--on-scene);border-color:rgba(248,241,225,.35);background:rgba(10,14,13,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn.ghost-scene:hover{border-color:#ecc06a}
+.btn.scene{background:#ecc06a;color:#1a1408;border-color:#ecc06a}
+.btn.done{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.btn svg{width:16px;height:16px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* ---------- Sections ---------- */
+section.band{padding-block:clamp(80px,11vw,140px)}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,6vw,96px);align-items:start}
+.h2{font-size:clamp(2.3rem,4.8vw,4rem);margin-top:16px}
+.lede{font-size:1.18rem;max-width:56ch;line-height:1.55}
+.lede + .lede{margin-top:18px;color:var(--muted);font-size:1.02rem}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:48px;padding-top:32px;border-top:1px solid var(--line)}
+.facts dt{font-family:var(--display);font-size:clamp(2.4rem,4vw,3.4rem);line-height:1}
+.facts dd{margin:10px 0 0;color:var(--muted);font-size:.92rem}
+@media (max-width:860px){.split{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.facts{grid-template-columns:minmax(0,1fr)}}
+
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding-block:clamp(18px,3vw,30px);user-select:none}
+.track{display:flex;width:max-content;animation:mq 42s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{font-family:var(--display);font-size:clamp(2.4rem,6vw,5rem);line-height:1;padding-inline:clamp(18px,2.4vw,34px);display:inline-flex;align-items:center;gap:clamp(18px,2.4vw,34px);white-space:nowrap}
+.track span:nth-child(even){color:transparent;-webkit-text-stroke:1px var(--fg)}
+.track span::after{content:"";width:12px;height:12px;background:var(--raffia);transform:rotate(45deg);display:inline-block;flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.section-head p{color:var(--muted);max-width:40ch}
+.steps{position:relative;list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.steps::before{content:"";position:absolute;left:0;top:-1px;height:2px;width:100%;background:var(--raffia);transform-origin:left;transform:scaleX(var(--p,0));transition:transform .2s linear}
+.steps li{padding:30px 24px 10px 0;margin-right:24px;border-right:1px solid var(--line)}
+.steps li:last-child{border-right:0;margin-right:0}
+.steps .n{font-family:var(--mono);font-size:.76rem;color:var(--raffia)}
+.steps h3{font-size:1.7rem;margin-top:12px}
+.steps p{margin-top:10px;color:var(--muted);font-size:.96rem}
+.steps .t{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:.7rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.steps li:nth-child(2){border-right:0;margin-right:0}.steps li:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:540px){.steps{grid-template-columns:minmax(0,1fr)}.steps li{border-right:0;margin-right:0;border-top:1px solid var(--line)}.steps li:first-child{border-top:0}}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:52px}
+@media (max-width:920px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:580px){.grid{grid-template-columns:minmax(0,1fr)}}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .3s;will-change:transform}
+.card:hover{border-color:var(--line-strong);box-shadow:0 30px 60px -20px rgba(0,0,0,.4)}
+.card .glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(400px circle at var(--gx,50%) var(--gy,0%),color-mix(in srgb,var(--raffia) 16%,transparent),transparent 60%);opacity:0;transition:opacity .4s;z-index:1}
+.card:hover .glare{opacity:1}
+.thumb{position:relative;aspect-ratio:4/3;max-width:100%;background:radial-gradient(ellipse at 50% 78%,var(--surface-2),var(--surface) 70%);overflow:hidden}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .6s var(--ease),transform .9s var(--ease)}
+.thumb img.b{opacity:0}
+.card:hover .thumb img.a{opacity:0;transform:scale(1.05)}
+.card:hover .thumb img.b{opacity:1;transform:scale(1.05)}
+.thumb .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:1.6rem;color:color-mix(in srgb,var(--raffia) 70%,var(--muted));background:repeating-linear-gradient(45deg,transparent 0 10px,color-mix(in srgb,var(--raffia) 9%,transparent) 10px 12px),repeating-linear-gradient(-45deg,transparent 0 10px,color-mix(in srgb,var(--raffia) 9%,transparent) 10px 12px)}
+.thumb .tag{position:absolute;left:14px;top:14px;z-index:2;font-family:var(--mono);font-size:.68rem;background:color-mix(in srgb,var(--bg) 70%,transparent);border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.card-body{position:relative;z-index:2;padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card-body h3{font-size:1.55rem}
+.card-meta{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:18px;flex-wrap:wrap}
+.card-foot .price{font-size:1.05rem}
+.card-actions{display:flex;gap:8px}
+.thumb img.photo{object-fit:cover}
+.card-maker{font-size:.84rem;color:var(--muted)}
+.detail-maker{color:var(--muted);font-size:.9rem;margin:-4px 0 0}
+.detail-maker b{color:inherit;font-weight:600}
+.makers{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:22px;margin-top:52px}
+.maker{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.maker .portrait{position:relative;aspect-ratio:4/5;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
+.maker .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.maker .portrait span{font-family:var(--display);font-size:4.5rem;color:var(--raffia)}
+.maker-body{padding:18px 20px 22px;display:grid;gap:6px}
+.maker-body h3{font-size:1.4rem}
+.maker-body blockquote{margin:6px 0 4px;color:var(--muted);font-size:.95rem;line-height:1.5}
+.reviews{list-style:none;padding:0;margin:52px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:22px 32px}
+.review{margin:0;border-top:1px solid var(--line-strong);padding-top:22px;display:grid;gap:14px}
+.review blockquote{margin:0;font-family:var(--display);font-size:1.3rem;line-height:1.35}
+.review figcaption{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.lines{display:grid;gap:4px;font-size:.88rem;color:var(--muted)}
+.lines div{display:flex;justify-content:space-between;gap:12px}
+
+.order{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,80px);align-items:start}
+@media (max-width:860px){.order{grid-template-columns:minmax(0,1fr)}}
+.order ol{margin:36px 0 0;padding:0;list-style:none;display:grid;gap:22px}
+.order ol li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.order ol li:last-child{border-bottom:0}
+.order ol .n{font-family:var(--mono);font-size:.8rem;color:var(--raffia);padding-top:4px}
+.order ol strong{display:block;font-size:1.06rem}
+.order ol span{color:var(--muted);font-size:.95rem}
+.contact{background:linear-gradient(160deg,var(--surface-2),var(--surface) 60%);border:1px solid var(--line);border-radius:24px;padding:30px;display:grid;gap:22px}
+.contact .row{display:grid;gap:5px}
+.contact .label{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.contact .value{font-size:1.15rem}
+.contact .value.big{font-family:var(--display);font-size:2rem;user-select:all}
+.copy-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.pay{display:flex;gap:8px;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--line);padding-block:48px calc(28px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.85rem;overflow:hidden}
+.wordmark{font-family:var(--display);font-size:clamp(5rem,23vw,19rem);line-height:.82;color:transparent;-webkit-text-stroke:1px var(--line-strong);letter-spacing:-.03em;margin:0 0 28px;user-select:none;white-space:nowrap}
+footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.credits{margin-top:18px;font-size:.78rem}
+.credits summary{cursor:pointer;width:max-content}
+.credits ul{margin:10px 0 6px;padding-left:18px;display:grid;gap:3px}
+.credits a{color:inherit;text-underline-offset:2px}
+.credits p{margin:0}
+
+/* reveal (only elements below the fold wait; resting state stays visible) */
+.rv-wait{opacity:.25;transform:translateY(28px)}
+.rv{transition:opacity 1s var(--ease),transform 1.1s var(--ease)}
+
+/* ---------- Cart drawer ---------- */
+.scrim{position:fixed;inset:0;z-index:50;background:rgba(5,8,7,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .4s}
+.scrim.open{opacity:1;pointer-events:auto}
+.cart{position:fixed;z-index:51;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--surface);border-left:1px solid var(--line);display:flex;flex-direction:column;transform:translateX(105%);visibility:hidden;transition:transform .55s var(--ease),visibility 0s linear .55s;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.cart.open{transform:none;visibility:visible;transition:transform .55s var(--ease)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+.cart-head h2{font-size:1.8rem}
+.cart-body{flex:1;overflow:auto;padding:6px 24px}
+.cart-list{list-style:none;margin:0;padding:0}
+.cart-item{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line);animation:fadeUp .45s var(--ease)}
+.cart-item img,.cart-item .mini{width:64px;height:64px;border-radius:12px;background:var(--surface-2);object-fit:contain}
+.cart-item strong{display:block;font-weight:600;font-size:.95rem}
+.cart-item .num{font-size:.78rem;color:var(--muted)}
+.cart-item .stepper button{width:30px;height:30px}
+.empty{color:var(--muted);padding:32px 0;max-width:34ch}
+.cart-foot{border-top:1px solid var(--line);padding:20px 24px 24px;display:grid;gap:12px}
+.total{display:flex;justify-content:space-between;align-items:baseline}
+.total .price{font-size:1.5rem}
+.cart-foot small{color:var(--muted);font-size:.84rem}
+.cart-foot textarea{width:100%;min-height:110px;background:var(--surface-2);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:10px;font-family:var(--mono);font-size:.78rem}
+.status{font-size:.85rem;color:var(--raffia);min-height:1.2em}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fields label{display:grid;gap:5px;font-size:.78rem;color:var(--muted)}
+.fields input{width:100%;min-width:0;background:var(--surface-2);color:var(--fg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;font-size:16px;transition:border-color .2s}
+.fields input:focus{border-color:var(--raffia);outline:none}
+.fields input[aria-invalid="true"]{border-color:var(--laterite)}
+@media (max-width:380px){.fields{grid-template-columns:1fr}}
+
+.toast{position:fixed;z-index:60;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,24px);display:flex;align-items:center;gap:10px;background:var(--fg);color:var(--bg);padding:12px 18px 12px 14px;border-radius:999px;font-size:.92rem;opacity:0;pointer-events:none;transition:opacity .3s,transform .45s var(--ease);max-width:calc(100% - 32px);box-shadow:0 16px 40px rgba(0,0,0,.3)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast i{width:22px;height:22px;border-radius:50%;background:var(--raffia);display:grid;place-items:center;color:var(--raffia-ink);font-style:normal;font-size:.75rem}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important}
+  .grain{animation:none}
+}
+</style>
+</head>
+<body>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#etal" aria-label="Atelier Tanana, accueil">
+      <svg viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="9" fill="#e2b04f"/><path d="M7 11h16M7 15h16M7 19h16" stroke="#1a1408" stroke-width="2" stroke-linecap="round" opacity=".5"/><path d="M11 7v16M15 7v16M19 7v16" stroke="#1a1408" stroke-width="2" stroke-linecap="round" stroke-dasharray="2 2"/></svg>
+      Tanana
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#atelier">L'atelier</a>
+      <a href="#geste">Le geste</a>
+      <a href="#mains" id="navMains" hidden>Les mains</a>
+      <a href="#collection">Collection</a>
+      <a href="#commander">Commander</a>
+    </nav>
+    <button class="cart-btn magnetic" id="cartOpen" aria-label="Ouvrir le panier">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1.6 10.2a2 2 0 0 1-2 1.8H7.6a2 2 0 0 1-2-1.8z"/><path d="M8.5 9a3.5 3.5 0 0 1 7 0"/></svg>
+      Panier <span class="badge" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="stage" id="etal">
+    <canvas id="scene" aria-label="Étal de marché en 3D. Les objets sont aussi listés dans la section Collection."></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="stage-copy" id="stageCopy">
+      <span class="eyebrow">Atelier Tanana · Antsirabe</span>
+      <h1><span class="ln"><span>Le marché du soir,</span></span><span class="ln"><span><span class="accent">à portée de main.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 70 4, 150 4, 296 10"/></svg></span></span></span></h1>
+      <p>Raphia, terre cuite, palissandre, soie sauvage. Approchez-vous de l'étal, prenez chaque pièce et tournez-la comme au marché.</p>
+      <div class="hero-cta">
+        <button class="btn scene magnetic" id="heroExplore">Examiner la soubique
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <a class="btn ghost-scene" href="#collection">Voir la collection</a>
+      </div>
+    </div>
+    <div class="hover-tag" id="hoverTag" aria-hidden="true"><strong></strong><span></span></div>
+    <div class="scroll-cue" aria-hidden="true"><i></i>Défiler</div>
+    <div class="stage-foot">
+      <ul class="hints">
+        <li><b>Glisser</b> · tourner autour</li>
+        <li><b>Cliquer</b> · examiner</li>
+        <li><b>Paniers suspendus</b> · les balancer</li>
+      </ul>
+      <div class="mood" role="group" aria-label="Ambiance du marché">
+        <span class="pill" aria-hidden="true"></span>
+        <button data-mood="matin" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Matin</button>
+        <button data-mood="soir" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>Soir</button>
+      </div>
+    </div>
+    <aside class="detail" id="detail" aria-live="polite" aria-label="Fiche produit">
+      <div class="detail-top"><span class="idx"><b id="dIdx">01</b> / 06 · <span id="dCat"></span></span><button class="icon-btn" id="dClose" aria-label="Revenir à l'étal">×</button></div>
+      <h2 class="anim" id="dName"></h2>
+      <p class="detail-maker anim" id="dMaker" hidden></p>
+      <div class="detail-meta anim"><span class="chip num" id="dSize"></span><span class="chip stock" id="dStock"></span></div>
+      <p class="detail-desc anim" id="dDesc"></p>
+      <div class="detail-buy">
+        <div class="buy-row"><span class="price" id="dPrice"></span>
+          <div class="stepper" aria-label="Quantité"><button id="qMinus" aria-label="Diminuer la quantité">−</button><output id="qVal">1</output><button id="qPlus" aria-label="Augmenter la quantité">+</button></div></div>
+        <button class="btn primary" id="dAdd">Ajouter au panier</button>
+        <div class="strip" id="strip" aria-label="Autres pièces de l'étal"></div>
+      </div>
+      <div class="detail-nav"><button class="link-btn" id="dPrev">← Précédent</button><span class="drag-hint">Glissez pour tourner</span><button class="link-btn" id="dNext">Suivant →</button></div>
+    </aside>
+  </div>
+
+  <section class="band" id="atelier">
+    <div class="wrap">
+      <div class="split">
+        <div class="rv">
+          <span class="eyebrow">L'atelier</span>
+          <h2 class="h2">Six savoir-faire, un seul étal.</h2>
+        </div>
+        <div class="rv">
+          <p class="lede">Tanana veut dire « la main ». Nous réunissons des vanniers, potiers, sculpteurs et tisserandes des Hautes Terres, et nous vendons leur travail au juste prix, sans intermédiaire.</p>
+          <p class="lede">Chaque pièce est signée par l'atelier qui l'a faite. Les variations de couleur, de trame ou de cuisson montrent qu'un objet est passé par des mains et non par une machine.</p>
+          <dl class="facts">
+            <div><dt class="num" data-count="42">42</dt><dd>artisans partenaires, payés à la commande</dd></div>
+            <div><dt class="num" data-count="6">6</dt><dd>savoir-faire, de la vannerie à la marqueterie</dd></div>
+            <div><dt class="num">1 j</dt><dd>de tressage pour une soubique de 32 cm</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Vannerie</span><span>Poterie</span><span>Sculpture</span><span>Tissage</span><span>Corne</span><span>Marqueterie</span>
+      <span>Vannerie</span><span>Poterie</span><span>Sculpture</span><span>Tissage</span><span>Corne</span><span>Marqueterie</span>
+    </div>
+  </div>
+
+  <section class="band" id="geste">
+    <div class="wrap">
+      <div class="section-head rv"><div><span class="eyebrow">Le geste</span><h2 class="h2">D'une feuille de raphia à la soubique.</h2></div><p>Le parcours d'un panier, de la palme au marché.</p></div>
+      <ol class="steps" id="steps">
+                <li class="rv"><span class="n">Étape 1</span><h3>Récolte</h3><p>Les jeunes feuilles de raphia sont coupées avant de s'ouvrir, quand la fibre est la plus souple.</p><span class="t">1 matinée</span></li>
+        <li class="rv"><span class="n">Étape 2</span><h3>Séchage</h3><p>Les lanières sèchent au soleil et prennent leur teinte paille. À la première pluie, on rentre tout.</p><span class="t">3 jours</span></li>
+        <li class="rv"><span class="n">Étape 3</span><h3>Teinture</h3><p>Une partie des fibres passe dans les bains végétaux : écorce pour le brun, curcuma pour l'or.</p><span class="t">1 à 2 jours</span></li>
+        <li class="rv"><span class="n">Étape 4</span><h3>Tressage</h3><p>Le fond d'abord, puis les parois montées rang par rang, et l'anse renforcée en dernier.</p><span class="t">1 journée</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="mains" style="padding-top:0" hidden>
+    <div class="wrap">
+      <div class="section-head rv"><div><span class="eyebrow">Les mains</span><h2 class="h2">Celles et ceux qui font l'étal.</h2></div><p>Chaque pièce vient d'un atelier que nous connaissons, et l'artisan est payé à la commande.</p></div>
+      <div class="makers" id="makers"></div>
+    </div>
+  </section>
+
+  <section class="band" id="collection" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head rv"><div><span class="eyebrow">Collection</span><h2 class="h2">Sur l'étal cette semaine</h2></div><p>Les pièces marquées 3D sont aussi sur l'étal : « Voir en 3D » vous y ramène, l'objet en main.</p></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="band" id="avis" style="padding-top:0" hidden>
+    <div class="wrap">
+      <div class="section-head rv"><div><span class="eyebrow">Ils ont commandé</span><h2 class="h2">Des nouvelles des paniers partis.</h2></div><p>Les avis tels que nos clients nous les ont envoyés.</p></div>
+      <ul class="reviews" id="reviews"></ul>
+    </div>
+  </section>
+
+  <section class="band" id="commander" style="padding-top:0">
+    <div class="wrap order">
+      <div class="rv">
+        <span class="eyebrow">Commander</span>
+        <h2 class="h2">Trois messages, et c'est emballé.</h2>
+        <ol>
+          <li><span class="n">01</span><div><strong>Remplissez votre panier</strong><span>Depuis l'étal ou la collection. Rien n'est réservé tant que nous n'avons pas confirmé.</span></div></li>
+          <li><span class="n">02</span><div><strong>Envoyez-la sur WhatsApp</strong><span>Indiquez votre nom et votre ville : le panier ouvre WhatsApp avec le message prêt. Pour un SMS, copiez-le et envoyez-le au numéro ci-contre.</span></div></li>
+          <li><span class="n">03</span><div><strong>Payez à la réception ou par mobile money</strong><span>Nous confirmons la disponibilité et le délai, puis vous réglez à la livraison ou par MVola.</span></div></li>
+        </ol>
+      </div>
+      <div class="contact rv">
+        <div class="row"><span class="label">WhatsApp · SMS</span><div class="copy-row"><span class="value big num" id="phone">034 00 000 00</span><button class="btn small" id="copyPhone">Copier</button></div></div>
+        <div class="row"><span class="label">Étal</span><span class="value">Marché couvert, Antsirabe · mardi au samedi, 8 h – 18 h</span></div>
+        <div class="row"><span class="label">Livraison</span><span class="value" id="deliveryInfo">Antsirabe et Antananarivo, sous 2 à 4 jours</span></div>
+        <div class="row"><span class="label">Paiement</span><div class="pay"><span class="chip">À la livraison</span><span class="chip">MVola</span><span class="chip">Orange Money</span></div></div>
+        <button class="btn primary magnetic" id="ctaCart">Voir mon panier</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="wordmark" aria-hidden="true">Tanana</p>
+    <div class="row"><span>Atelier Tanana · artisanat des Hautes Terres</span><span>Marque, prix et coordonnées d'exemple pour cette maquette.</span></div>
+    <details class="credits" id="credits" hidden><summary>Crédits photos</summary><ul id="creditList"></ul><p>Modèles 3D du décor : Poly Haven (CC0).</p></details>
+  </div>
+</footer>
+
+<div class="cursor" id="cursor" aria-hidden="true"><div class="ring"><span></span></div><div class="dot"></div></div>
+<div class="scrim" id="scrim"></div>
+<aside class="cart" id="cart" aria-label="Panier" aria-hidden="true">
+  <div class="cart-head"><h2>Votre panier</h2><button class="icon-btn" id="cartClose" aria-label="Fermer le panier">×</button></div>
+  <div class="cart-body" data-lenis-prevent>
+    <ul class="cart-list" id="cartList"></ul>
+    <p class="empty" id="cartEmpty">Votre panier est vide. Cliquez sur un objet de l'étal pour l'examiner, puis ajoutez-le.</p>
+  </div>
+  <div class="cart-foot">
+    <div class="fields">
+      <label><span>Nom</span><input id="oName" type="text" autocomplete="name" placeholder="Votre nom" required></label>
+      <label><span>Ville de livraison</span><input id="oCity" type="text" list="oCities" autocomplete="address-level2" placeholder="Antsirabe, Antananarivo…" required></label>
+      <datalist id="oCities"><option value="Antsirabe"><option value="Antananarivo"><option value="Retrait à l'étal, Antsirabe"></datalist>
+    </div>
+    <div class="lines" id="cartLines" hidden><div><span>Sous-total</span><span class="num" id="cartSub"></span></div><div><span id="cartShipLabel">Livraison</span><span class="num" id="cartShip"></span></div></div>
+    <div class="total"><span>Total</span><span class="price" id="cartTotal">0 Ar</span></div>
+    <small id="cartNote">Hors livraison. Disponibilité confirmée par message avant paiement.</small>
+    <button class="btn primary" id="sendWa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.4 8.4 0 1 1 21 11.5z"/></svg>Envoyer sur WhatsApp</button>
+    <button class="btn small" id="copyOrder">Copier la commande (pour SMS)</button>
+    <textarea id="orderText" readonly hidden aria-label="Texte de la commande"></textarea>
+    <span class="status" id="orderStatus" role="status"></span>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status"><i>✓</i><span></span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script>
+(function(){
+"use strict";
+const PRODUCTS=[
+  {id:'soubique',name:'Soubique en raphia',cat:'Vannerie',size:'Ø 32 cm · h 24 cm',price:45000,stock:'6 en stock',desc:"Panier tressé à la main en raphia naturel, anse renforcée. Pour le marché, le linge ou les fruits.",photo:'',maker:'voahirana'},
+  {id:'jarre',name:'Jarre en terre cuite',cat:'Poterie',size:'Ø 22 cm · h 30 cm',price:38000,stock:'4 en stock',desc:"Tournée puis cuite au feu de bois. Elle garde l'eau fraîche, et chaque pièce porte les marques de sa cuisson.",photo:'',maker:'rado'},
+  {id:'zebu',name:'Zébu en palissandre',cat:'Sculpture',size:'L 18 cm',price:65000,stock:'Pièce unique',desc:"Sculpté dans un seul bloc de palissandre, poncé puis ciré à la main. Le zébu, figure de prospérité.",photo:'',maker:'faly'},
+  {id:'lamba',name:'Lamba en soie sauvage',cat:'Tissage',size:'180 × 60 cm',price:120000,stock:'3 en stock',desc:"Soie sauvage filée et tissée sur métier à bras, teintures végétales. Se porte en écharpe ou en étole.",photo:'photos/lamba.jpg',maker:'lalao'},
+  {id:'bol',name:'Bol en corne de zébu',cat:'Corne',size:'Ø 14 cm',price:28000,stock:'8 en stock',desc:"Corne polie jusqu'au reflet ambré. Pour les fruits secs, les bijoux ou le sel.",photo:'photos/bol.jpg',maker:'tojo'},
+  {id:'coffret',name:'Coffret en marqueterie',cat:'Ébénisterie',size:'18 × 13 × 9 cm',price:52000,stock:'5 en stock',desc:"Bois clairs et foncés assemblés en losanges. Couvercle ajusté, intérieur ciré.",photo:'',maker:'hery'},
+  /* pièces présentes seulement dans la Collection (pas sur l'étal 3D) */
+  {id:'cabas',name:'Cabas en raphia brodé',cat:'Vannerie',size:'40 × 32 cm',price:55000,stock:'5 en stock',desc:"Tressé serré pour tenir sa forme, motifs brodés en raphia teint. Anses doublées de cuir.",photo:'photos/cabas.jpg',maker:'voahirana'},
+  {id:'sets',name:'Sets de table en raphia',cat:'Vannerie',size:'Ø 35 cm · lot de 4',price:32000,stock:'10 en stock',desc:"Spirale cousue à la main, en paille naturelle ou rehaussée d'or au curcuma.",photo:'photos/sets.jpg',maker:'voahirana'},
+  {id:'couverts',name:'Couverts à salade en palissandre',cat:'Sculpture',size:'L 30 cm',price:22000,stock:'12 en stock',desc:"Taillés dans les chutes des grandes pièces, huilés à l'huile alimentaire.",photo:'photos/couverts.jpg',maker:'faly'},
+  {id:'echarpe',name:'Écharpe en soie sauvage',cat:'Tissage',size:'170 × 35 cm',price:68000,stock:'4 en stock',desc:"Teinte au curcuma et à l'écorce, plus légère que le lamba. Franges nouées à la main.",photo:'photos/echarpe.jpg',maker:'lalao'},
+  {id:'bracelets',name:'Bracelets en corne de zébu',cat:'Corne',size:'Ø 6,5 cm · lot de 3',price:18000,stock:'15 en stock',desc:"Trois teintes de corne, du miel au presque noir, polies jusqu'au brillant.",photo:'photos/bracelets.jpg',maker:'tojo'},
+  {id:'plateau',name:'Plateau en marqueterie',cat:'Ébénisterie',size:'40 × 28 cm',price:75000,stock:'2 en stock',desc:"Le motif en losanges du coffret, en grand. Poignées taillées dans la masse.",photo:'photos/plateau.jpg',maker:'hery'}
+];
+/* les six pièces modélisées sur l'étal 3D */
+const STALL=['soubique','jarre','zebu','lamba','bol','coffret'];
+/* DEMO : artisans et avis ci-dessous sont fictifs, le temps de la maquette. Passer à false avec le vrai contenu. */
+const DEMO=true;
+/* Contenu réel à compléter. Tant qu'un tableau est vide, la section correspondante reste masquée.
+   PRODUCTS.photo : chemin d'une photo dans le dossier du site (ex. 'photos/soubique.jpg', format 4:3 conseillé) ;
+   l'aperçu 3D apparaît alors au survol. PRODUCTS.maker : l'id d'un artisan ci-dessous. */
+const ARTISANS=[
+  {id:'voahirana',name:'Voahirana R.',craft:'Vannerie',village:'Ambalavao',photo:'photos/artisans/voahirana.jpg',quote:"Le fond, c'est ce qu'on ne voit pas, et c'est lui qui décide si le panier durera dix ans."},
+  {id:'rado',name:'Rado A.',craft:'Poterie',village:'Antsirabe',photo:'photos/artisans/rado.jpg',quote:"Je cuis au bois, une fois par semaine. Ce qui sort du four, je ne le sais jamais tout à fait."},
+  {id:'faly',name:'Faly M.',craft:'Sculpture',village:'Ambositra',photo:'photos/artisans/faly.jpg',quote:"Un zébu demande trois jours. Le premier, je ne fais que regarder le bloc."},
+  {id:'lalao',name:'Lalao N.',craft:'Tissage',village:'Soatanana',photo:'photos/artisans/lalao.jpg',quote:"Ma mère tissait déjà la soie sauvage. Les couleurs, c'est moi qui les ai changées."},
+  {id:'tojo',name:'Tojo H.',craft:'Corne',village:'Antsirabe',photo:'photos/artisans/tojo.jpg',quote:"La corne se chauffe, se presse, puis se polit longtemps. C'est le polissage qui fait le prix."},
+  {id:'hery',name:'Hery F.',craft:'Marqueterie',village:'Ambositra',photo:'photos/artisans/hery.jpg',quote:"Chaque losange est coupé à la main. S'il en manque un, tout le motif le dit."}
+];
+const REVIEWS=[
+  {name:'Mialy',city:'Antananarivo',product:'soubique',text:"Arrivée en trois jours, bien emballée. Elle sert au marché tous les samedis depuis."},
+  {name:'Claire',city:'Lyon',product:'lamba',text:"Offert à ma mère, qui le porte en étole. La soie est plus douce que sur les photos."},
+  {name:'Andry',city:'Antsirabe',product:'zebu',text:"Je suis passé à l'étal pour le voir avant de payer. Il est encore plus beau en vrai."},
+  {name:'Sophie',city:'Antananarivo',product:'coffret',text:"Le couvercle ferme parfaitement. On m'a envoyé une photo avant l'expédition, j'ai apprécié."}
+];
+/* photos d'exemple (Wikimedia Commons) : crédits affichés en pied de page, comme l'exigent les licences CC BY / BY-SA */
+const PHOTO_CREDITS=[
+  {file:'lamba.jpg',title:"Lamba raw silk shawl from Madagascar",artist:"S@veOurSm:)e",license:'CC BY-SA 2.0',url:'https://commons.wikimedia.org/wiki/File:Lamba_raw_silk_shawl_from_Madagascar.jpg'},
+  {file:'bol.jpg',title:"Produits en corne de zébu",artist:"HoneyGaLe",license:'CC BY-SA 3.0',url:'https://commons.wikimedia.org/wiki/File:Produits_en_corne_de_z%C3%A9bu.jpg'},
+  {file:'cabas.jpg',title:"Sac en raphia",artist:"Mammysou17",license:'CC0',url:'https://commons.wikimedia.org/wiki/File:Sac_en_raphia.jpg'},
+  {file:'sets.jpg',title:"Produits malgaches, aliments, artisanat, Madagascar (36097)",artist:"Cactus0625",license:'CC BY-SA 4.0',url:'https://commons.wikimedia.org/wiki/File:Produits_malgaches,_aliments,_artisanat,_Madagascar_(36097).jpg'},
+  {file:'couverts.jpg',title:"Couverts à salade en bois et corne de Madagascar",artist:"Lionel Allorge",license:'CC BY-SA 3.0',url:'https://commons.wikimedia.org/wiki/File:Couverts_%C3%A0_salade_en_bois_et_corne_de_Madagascar.jpg'},
+  {file:'echarpe.jpg',title:"Vente de tissus en soie à Ambohidrabiby",artist:"Alahamady",license:'CC BY-SA 4.0',url:'https://commons.wikimedia.org/wiki/File:Vente_de_tissus_en_soie_%C3%A0_Ambohidrabiby_lors_de_la_c%C3%A9l%C3%A9bration_du_nouvel_an_malgache_du_30_mars_2014.JPG'},
+  {file:'bracelets.jpg',title:"Bracelet en corne",artist:"Vassil",license:'Domaine public',url:'https://commons.wikimedia.org/wiki/File:Bracelet_en_corne.jpg'},
+  {file:'plateau.jpg',title:"Omega Workshops tray with The Wrestlers design",artist:"14GTR",license:'CC0',url:'https://commons.wikimedia.org/wiki/File:Omega_Workshops_tray_with_The_Wrestlers_design.jpg'},
+  {file:'artisans/voahirana.jpg',title:"Travaille du rafia à Madagascar",artist:"Dalbergiaada",license:'CC BY-SA 4.0',url:'https://commons.wikimedia.org/wiki/File:Travaille_du_rafia_%C3%A0_Madagascar.jpg'},
+  {file:'artisans/rado.jpg',title:"Artisanat d'Ambalavalo",artist:"Ongy.M",license:'CC BY 4.0',url:'https://commons.wikimedia.org/wiki/File:Artisanat_d%27Ambalavalo.jpg'},
+  {file:'artisans/faly.jpg',title:"Sculpture en bois à Madagascar",artist:"Fitax212",license:'CC BY-SA 4.0',url:'https://commons.wikimedia.org/wiki/File:Sculpture_en_bois_%C3%A0_Madagascar.jpg'},
+  {file:'artisans/lalao.jpg',title:"Chaîne Landy MPMF24",artist:"MPMF24",license:'CC BY-SA 4.0',url:'https://commons.wikimedia.org/wiki/File:Cha%C3%AEne_Landy_MPMF24.jpg'},
+  {file:'artisans/tojo.jpg',title:"Cornes de zébu prêtes à être travaillées",artist:"HoneyGaLe",license:'CC BY-SA 3.0',url:'https://commons.wikimedia.org/wiki/File:Cornes_de_z%C3%A9bu_pr%C3%AAtes_%C3%A0_%C3%AAtre_travaill%C3%A9es.jpg'},
+  {file:'artisans/hery.jpg',title:"Hand inspecting wood shavings in workshop",artist:"Shixart1985",license:'CC BY 2.0',url:'https://commons.wikimedia.org/wiki/File:Hand_inspecting_wood_shavings_in_workshop_during_afternoon_woodworking_session_for_quality_and_consistency_undefined.jpg'}
+];
+/* frais de livraison par ville, en Ar (0 = gratuit) ; une ville absente reste « à confirmer » */
+const DELIVERY={
+  // 'Antsirabe':5000,'Antananarivo':15000,"Retrait à l'étal, Antsirabe":0,
+};
+const byId=Object.fromEntries(PRODUCTS.map(p=>[p.id,p]));
+const makerOf=p=>ARTISANS.find(a=>a.id===p.maker);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=n=>new Intl.NumberFormat('fr-FR').format(n)+' Ar';
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+const $=id=>document.getElementById(id);
+const thumbs={};
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+/* ---------- smooth scroll ---------- */
+let lenis=null;
+if(window.Lenis&&!reduced){try{lenis=new Lenis({lerp:.085,smoothWheel:true});const raf=t=>{lenis.raf(t);requestAnimationFrame(raf);};requestAnimationFrame(raf);}catch(e){lenis=null;}}
+function scrollToEl(el){if(!el)return;if(lenis)lenis.scrollTo(el,{offset:-70,duration:1.4});else el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});}
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();scrollToEl(t);}));
+
+/* ---------- header state ---------- */
+const topBar=$('top');let lastY=0;
+function onScroll(){
+  const y=window.scrollY,h=$('etal').offsetHeight;
+  topBar.classList.toggle('scrolled',y>h-90);
+  topBar.classList.toggle('hide',y>h&&y>lastY+2&&!$('cart').classList.contains('open'));
+  if(y<lastY-2)topBar.classList.remove('hide');
+  lastY=y;
+  const st=$('steps');if(st){const r=st.getBoundingClientRect();const p=clamp((innerHeight*.85-r.top)/(r.height+innerHeight*.4),0,1);st.style.setProperty('--p',p.toFixed(3));}
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------- reveal ---------- */
+const rvs=[...document.querySelectorAll('.rv')];
+if(!reduced&&'IntersectionObserver' in window){
+  rvs.forEach((el,i)=>{const r=el.getBoundingClientRect();if(r.top>innerHeight)el.classList.add('rv-wait');});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;const sib=[...el.parentElement.children].filter(c=>c.classList.contains('rv'));el.style.transitionDelay=(sib.indexOf(el)*90)+'ms';el.classList.remove('rv-wait');io.unobserve(el);if(el.querySelector('[data-count]'))countUp(el);}}),{rootMargin:'0px 0px -10% 0px'});
+  rvs.forEach(el=>io.observe(el));
+}
+function countUp(root){root.querySelectorAll('[data-count]').forEach(el=>{const end=+el.dataset.count;const t0=performance.now();const step=now=>{const k=clamp((now-t0)/1400,0,1);el.textContent=Math.round(end*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(step);};requestAnimationFrame(step);});}
+
+/* ---------- magnetic buttons ---------- */
+function magnetize(el){if(!fine||reduced)return;el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.22}px,${(e.clientY-r.top-r.height/2)*.3}px)`;});el.addEventListener('pointerleave',()=>{el.style.transform='';});}
+document.querySelectorAll('.magnetic').forEach(magnetize);
+
+/* ---------- toast ---------- */
+let toastTimer;
+function toast(msg){const t=$('toast');t.querySelector('span').textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2400);}
+
+/* ---------- cart ---------- */
+let cart={};
+try{cart=JSON.parse(localStorage.getItem('tanana-cart')||'{}')||{};}catch(e){cart={};}
+for(const k of Object.keys(cart)){if(!byId[k]||!(cart[k]>0))delete cart[k];}
+function saveCart(){try{localStorage.setItem('tanana-cart',JSON.stringify(cart));}catch(e){}}
+const cartTotal=()=>Object.entries(cart).reduce((s,[k,q])=>s+byId[k].price*q,0);
+const cartCount=()=>Object.values(cart).reduce((s,q)=>s+q,0);
+function renderCart(){
+  const list=$('cartList');list.innerHTML='';
+  const entries=Object.entries(cart);
+  $('cartEmpty').hidden=entries.length>0;
+  for(const [id,q] of entries){
+    const p=byId[id];const li=document.createElement('li');li.className='cart-item';
+    const img=thumbs[id]?`<img src="${thumbs[id].a}" alt="">`:p.photo?`<img src="${esc(p.photo)}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'mini'}))">`:`<span class="mini"></span>`;
+    li.innerHTML=`${img}<div><strong>${p.name}</strong><span class="num">${q} × ${fmt(p.price)} = ${fmt(p.price*q)}</span></div><div class="stepper"><button aria-label="Retirer un ${p.name}" data-d="-1">−</button><output>${q}</output><button aria-label="Ajouter un ${p.name}" data-d="1">+</button></div>`;
+    li.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{cart[id]=(cart[id]||0)+Number(b.dataset.d);if(cart[id]<=0)delete cart[id];saveCart();renderCart();}));
+    list.appendChild(li);
+  }
+  const sub=cartTotal(),fee=shipFee();
+  $('cartLines').hidden=!entries.length||!Object.keys(DELIVERY).length;
+  $('cartSub').textContent=fmt(sub);
+  $('cartShipLabel').textContent=buyer.city?'Livraison · '+buyer.city:'Livraison';
+  $('cartShip').textContent=fee===null?'à confirmer':fee?fmt(fee):'gratuite';
+  $('cartTotal').textContent=fmt(sub+(fee||0));
+  $('cartNote').textContent=(fee===null?'Hors livraison. ':'')+'Disponibilité confirmée par message avant paiement.';
+  $('cartCount').textContent=cartCount();
+  $('copyOrder').disabled=$('sendWa').disabled=entries.length===0;
+  $('orderText').hidden=true;$('orderStatus').textContent='';
+}
+function addToCart(id,n=1){
+  cart[id]=(cart[id]||0)+n;saveCart();renderCart();
+  const b=$('cartCount');b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');
+  toast((n>1?n+' × ':'')+byId[id].name+' ajouté au panier');
+  if(window.__hop)window.__hop(id);
+}
+/* buyer details, remembered for the next order */
+const WA_NUMBER='261340000000';
+let buyer={name:'',city:''};
+try{Object.assign(buyer,JSON.parse(localStorage.getItem('tanana-buyer')||'{}'));}catch(e){}
+$('oName').value=buyer.name||'';$('oCity').value=buyer.city||'';
+['oName','oCity'].forEach(id=>$(id).addEventListener('input',()=>{
+  buyer={name:$('oName').value.trim(),city:$('oCity').value.trim()};
+  try{localStorage.setItem('tanana-buyer',JSON.stringify(buyer));}catch(e){}
+  $(id).removeAttribute('aria-invalid');renderCart();
+}));
+function shipFee(){const k=Object.keys(DELIVERY).find(c=>c.toLowerCase()===buyer.city.toLowerCase());return k===undefined?null:DELIVERY[k];}
+if(Object.keys(DELIVERY).length)$('deliveryInfo').textContent=Object.entries(DELIVERY).map(([c,f])=>`${c} : ${f?fmt(f):'gratuit'}`).join(' · ')+'. Sous 2 à 4 jours.';
+function orderText(){
+  const sub=cartTotal(),fee=shipFee();
+  const sums=fee===null?`Total : ${fmt(sub)} (hors livraison)`:`Sous-total : ${fmt(sub)}\nLivraison : ${fee?fmt(fee):'gratuite'}\nTotal : ${fmt(sub+fee)}`;
+  return `Bonjour Atelier Tanana, je souhaite commander :\n${Object.entries(cart).map(([k,q])=>`- ${q} × ${byId[k].name} (${fmt(byId[k].price*q)})`).join('\n')}\n${sums}\nNom : ${buyer.name}\nVille de livraison : ${buyer.city}`;
+}
+function openCart(){$('cart').classList.add('open');$('cart').setAttribute('aria-hidden','false');$('scrim').classList.add('open');if(lenis)lenis.stop();setTimeout(()=>$('cartClose').focus(),50);}
+function closeCart(){$('cart').classList.remove('open');$('cart').setAttribute('aria-hidden','true');$('scrim').classList.remove('open');if(lenis)lenis.start();$('cartOpen').focus({preventScroll:true});}
+$('cartOpen').addEventListener('click',openCart);
+$('ctaCart').addEventListener('click',openCart);
+$('cartClose').addEventListener('click',closeCart);
+$('scrim').addEventListener('click',closeCart);
+$('sendWa').addEventListener('click',()=>{
+  const missing=['oName','oCity'].filter(id=>!$(id).value.trim());
+  missing.forEach(id=>$(id).setAttribute('aria-invalid','true'));
+  if(missing.length){$(missing[0]).focus();$('orderStatus').textContent="Indiquez votre nom et la ville de livraison.";return;}
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(orderText())}`,'_blank','noopener');
+  $('orderStatus').textContent="WhatsApp s'ouvre avec votre commande : il ne reste qu'à appuyer sur Envoyer.";
+});
+$('copyOrder').addEventListener('click',()=>{
+  const txt=orderText();const ta=$('orderText');
+  const fallback=()=>{ta.value=txt;ta.hidden=false;ta.focus();ta.select();$('orderStatus').textContent="Copie automatique indisponible : le texte est sélectionné, copiez-le manuellement.";};
+  try{navigator.clipboard.writeText(txt).then(()=>{$('orderStatus').textContent="Commande copiée. Collez-la dans WhatsApp au 034 00 000 00.";},fallback);}catch(e){fallback();}
+});
+$('copyPhone').addEventListener('click',()=>{
+  const v=$('phone').textContent;
+  const sel=()=>{const r=document.createRange();r.selectNodeContents($('phone'));const s=getSelection();s.removeAllRanges();s.addRange(r);toast('Numéro sélectionné');};
+  try{navigator.clipboard.writeText(v).then(()=>toast('Numéro copié'),sel);}catch(e){sel();}
+});
+
+/* ---------- collection grid ---------- */
+function goTo3D(id){scrollToEl($('etal'));setTimeout(()=>{if(window.__focusProduct)window.__focusProduct(id);},reduced?0:(lenis?900:500));}
+function renderGrid(){
+  const g=$('grid');g.innerHTML='';
+  PRODUCTS.forEach((p,i)=>{
+    const c=document.createElement('article');c.className='card';
+    const t=thumbs[p.id],m=makerOf(p),in3d=STALL.includes(p.id);
+    /* photo manquante : on retombe sur l'aperçu 3D, sinon sur le nom du savoir-faire */
+    const imgs=(t?'':`<span class="ph">${p.cat}</span>`)+(p.photo?`<img class="a photo" src="${esc(p.photo)}" alt="${p.name}" loading="lazy" onerror="const b=this.nextElementSibling;if(b)b.className='a';this.remove()">${t?`<img class="b" src="${t.a}" alt="">`:''}`
+      :t?`<img class="a" src="${t.a}" alt="${p.name}"><img class="b" src="${t.b}" alt="">`:'');
+    c.innerHTML=`<span class="glare"></span><div class="thumb"><span class="tag">${String(i+1).padStart(2,'0')} · ${p.cat}${in3d?' · 3D':''}</span>${imgs}</div>
+    <div class="card-body"><h3>${p.name}</h3><span class="card-meta">${p.size} · ${p.stock}</span>${m?`<span class="card-maker">Fait par ${esc(m.name)}, ${esc(m.village)}</span>`:''}
+    <div class="card-foot"><span class="price">${fmt(p.price)}</span><div class="card-actions">${in3d?'<button class="btn small" data-act="view">Voir en 3D</button>':''}<button class="btn small primary" data-act="add" aria-label="Ajouter ${p.name} au panier">Ajouter</button></div></div></div>`;
+    c.querySelector('[data-act="add"]').addEventListener('click',()=>addToCart(p.id));
+    if(in3d)c.querySelector('[data-act="view"]').addEventListener('click',()=>goTo3D(p.id));
+    if(fine&&!reduced){
+      c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();const x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.setProperty('--ry',((x-.5)*7).toFixed(2)+'deg');c.style.setProperty('--rx',((.5-y)*6).toFixed(2)+'deg');c.style.setProperty('--gx',(x*100)+'%');c.style.setProperty('--gy',(y*100)+'%');});
+      c.addEventListener('pointerleave',()=>{c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg');});
+    }
+    g.appendChild(c);
+  });
+}
+renderCart();renderGrid();
+
+/* ---------- artisans, avis, données Google ---------- */
+if(ARTISANS.length){
+  $('mains').hidden=false;$('navMains').hidden=false;
+  $('makers').innerHTML=ARTISANS.map(a=>{
+    const pieces=PRODUCTS.filter(p=>p.maker===a.id).map(p=>p.name);
+    return `<article class="maker"><div class="portrait"><span aria-hidden="true">${esc(a.name.charAt(0))}</span>${a.photo?`<img src="${esc(a.photo)}" alt="L'atelier de ${esc(a.name)}" loading="lazy" onerror="this.remove()">`:''}</div>
+    <div class="maker-body"><span class="card-meta">${esc(a.craft)} · ${esc(a.village)}</span><h3>${esc(a.name)}</h3>${a.quote?`<blockquote>« ${esc(a.quote)} »</blockquote>`:''}${pieces.length?`<span class="card-meta">Sur l'étal : ${esc(pieces.join(', '))}</span>`:''}</div></article>`;
+  }).join('');
+}
+if(REVIEWS.length){
+  $('avis').hidden=false;
+  $('reviews').innerHTML=REVIEWS.map(r=>`<li><figure class="review"><blockquote>« ${esc(r.text)} »</blockquote><figcaption>${esc(r.name)}${r.city?' · '+esc(r.city):''}${byId[r.product]?' · '+esc(byId[r.product].name):''}</figcaption></figure></li>`).join('');
+}
+/* crédits : seulement pour les photos encore utilisées par un produit ou un artisan */
+{
+  const used=new Set([...PRODUCTS,...ARTISANS].map(x=>x.photo).filter(Boolean));
+  const list=PHOTO_CREDITS.filter(c=>used.has('photos/'+c.file));
+  if(list.length){
+    $('credits').hidden=false;
+    $('creditList').innerHTML=list.map(c=>`<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a> · ${esc(c.artist)} · ${esc(c.license)}</li>`).join('');
+  }
+}
+if(DEMO){
+  const tag=' <span class="chip stock">Contenu d\'exemple</span>';
+  document.querySelector('#mains .section-head p').innerHTML="Artisans fictifs, le temps de la maquette."+tag;
+  document.querySelector('#avis .section-head p').innerHTML="Témoignages fictifs, à remplacer par de vrais avis."+tag;
+}
+{
+  const ld={'@context':'https://schema.org','@graph':PRODUCTS.map(p=>{
+    const o={'@type':'Product',name:p.name,category:p.cat,description:`${p.desc} ${p.size}.`,offers:{'@type':'Offer',price:p.price,priceCurrency:'MGA',availability:'https://schema.org/'+(/unique/i.test(p.stock)?'LimitedAvailability':'InStock'),seller:{'@id':'https://atelier-tanana.example/#store'}}};
+    if(p.photo&&!DEMO)o.image=new URL(p.photo,location.href).href;
+    return o;})};
+  const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(ld);document.head.appendChild(s);
+}
+
+/* ---------- mood pill ---------- */
+function placePill(){const on=document.querySelector('.mood button[aria-pressed="true"]');const pill=document.querySelector('.mood .pill');if(!on||!pill)return;pill.style.left=on.offsetLeft+'px';pill.style.width=on.offsetWidth+'px';}
+placePill();document.fonts&&document.fonts.ready.then(placePill);
+
+/* ---------- 3D ---------- */
+const stage=$('etal'),canvas=$('scene');
+if(!window.THREE||!THREE.OrbitControls){stage.insertAdjacentHTML('beforeend','<div class="gl-fallback"><p>La scène 3D n\'a pas pu se charger. Toute la collection reste disponible plus bas.</p></div>');return;}
+/* quality: lighter rendering on touch devices and modest hardware (?q=low / ?q=high to force) */
+const qp=new URLSearchParams(location.search).get('q');
+const lite=qp?qp==='low':(!fine||(navigator.hardwareConcurrency||8)<=4||(navigator.deviceMemory||8)<=4||!!(navigator.connection&&navigator.connection.saveData));
+let renderer;
+try{renderer=new THREE.WebGLRenderer({canvas,antialias:!lite,powerPreference:'high-performance'});}
+catch(e){stage.insertAdjacentHTML('beforeend','<div class="gl-fallback"><p>Votre navigateur n\'affiche pas la 3D. Toute la collection reste disponible plus bas.</p></div>');return;}
+let dpr=Math.min(devicePixelRatio||1,lite?1.5:2);
+renderer.setPixelRatio(dpr);
+renderer.outputEncoding=THREE.sRGBEncoding;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=lite?THREE.PCFShadowMap:THREE.PCFSoftShadowMap;
+if(fine)stage.classList.add('fine');
+
+const scene=new THREE.Scene();
+scene.fog=new THREE.Fog(0x4a3434,10,30);
+const camera=new THREE.PerspectiveCamera(42,1,.1,120);
+const controls=new THREE.OrbitControls(camera,canvas);
+controls.target.set(0,1.2,0);
+Object.assign(controls,{enableDamping:true,dampingFactor:.06,enablePan:false,enableZoom:false,minPolarAngle:.95,maxPolarAngle:1.47,minAzimuthAngle:-.8,maxAzimuthAngle:.8,rotateSpeed:.5});
+canvas.style.touchAction='pan-y';
+
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function tex(w,h,draw,rx=1,ry=1){const c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');draw(g,w,h);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(rx,ry);t.encoding=THREE.sRGBEncoding;t.anisotropy=renderer.capabilities.getMaxAnisotropy?Math.min(8,renderer.capabilities.getMaxAnisotropy()):4;return t;}
+function raffiaTex(rx,ry,seed=7){const r=rng(seed);return tex(256,256,(g,w,h)=>{g.fillStyle='#7a5524';g.fillRect(0,0,w,h);const s=32;for(let y=0;y<h;y+=s)for(let x=0;x<w;x+=s){const alt=((x+y)/s)%2===0;for(let i=0;i<4;i++){const l=170+r()*45|0;g.fillStyle=`rgb(${l+28},${l-8},${l-95})`;if(alt)g.fillRect(x+1,y+i*8+1,s-2,6);else g.fillRect(x+i*8+1,y+1,6,s-2);}}},rx,ry);}
+function woodTex(base,seed,rx,ry){const r=rng(seed);return tex(256,256,(g,w,h)=>{g.fillStyle=base;g.fillRect(0,0,w,h);for(let i=0;i<70;i++){g.strokeStyle=`rgba(0,0,0,${.04+r()*.15})`;g.lineWidth=.6+r()*2.2;g.beginPath();const y0=r()*h,a=2+r()*8,f=.01+r()*.03,p=r()*6;for(let x=0;x<=w;x+=6){const y=y0+Math.sin(x*f+p)*a;x?g.lineTo(x,y):g.moveTo(x,y);}g.stroke();}for(let i=0;i<20;i++){g.strokeStyle=`rgba(255,230,190,${r()*.06})`;g.lineWidth=1;g.beginPath();const y0=r()*h;g.moveTo(0,y0);g.lineTo(w,y0+r()*10-5);g.stroke();}},rx,ry);}
+const terraTex=tex(256,256,(g,w,h)=>{const gr=g.createLinearGradient(0,0,0,h);gr.addColorStop(0,'#b8603a');gr.addColorStop(1,'#8a4124');g.fillStyle=gr;g.fillRect(0,0,w,h);const r=rng(3);for(let i=0;i<1200;i++){g.fillStyle=`rgba(${r()<.5?'255,220,190':'40,15,5'},${r()*.09})`;g.fillRect(r()*w,r()*h,2,2);}g.fillStyle='rgba(35,14,6,.6)';[.28,.33,.64].forEach(v=>g.fillRect(0,v*h,w,3));g.strokeStyle='rgba(35,14,6,.5)';g.lineWidth=2;g.beginPath();for(let x=0;x<=w;x+=16){g.lineTo(x,.40*h);g.lineTo(x+8,.50*h);}g.stroke();},3,1);
+function silkTex(seed,cols){const r=rng(seed);return tex(256,64,(g,w,h)=>{let x=0;while(x<w){const c=cols[(r()*cols.length)|0];const sw=4+r()*24;g.fillStyle=c;g.fillRect(x,0,sw,h);x+=sw;}g.fillStyle='rgba(255,255,255,.07)';for(let y=0;y<h;y+=2)g.fillRect(0,y,w,1);g.fillStyle='rgba(0,0,0,.06)';for(let x2=0;x2<w;x2+=3)g.fillRect(x2,0,1,h);});}
+const LAMBA_COLS=['#7a2e3a','#c9873a','#2f4a3e','#e8d7b0','#a8452f','#3c2f5c'];
+const marqTex=tex(256,256,(g,w,h)=>{g.fillStyle='#dcbd8d';g.fillRect(0,0,w,h);const s=32;for(let y=0;y<h;y+=s)for(let x=0;x<w;x+=s){g.fillStyle=((x+y)/s)%2?'#5b3322':'#93603a';g.beginPath();g.moveTo(x+s/2,y+2);g.lineTo(x+s-2,y+s/2);g.lineTo(x+s/2,y+s-2);g.lineTo(x+2,y+s/2);g.closePath();g.fill();}g.strokeStyle='rgba(40,20,10,.5)';g.lineWidth=3;g.strokeRect(2,2,w-4,h-4);},1,1);
+const hornTex=tex(256,256,(g,w,h)=>{const gr=g.createLinearGradient(0,h,0,0);gr.addColorStop(0,'#1b120c');gr.addColorStop(.55,'#3a2414');gr.addColorStop(1,'#b0702c');g.fillStyle=gr;g.fillRect(0,0,w,h);const r=rng(5);for(let i=0;i<46;i++){g.strokeStyle=`rgba(235,175,95,${r()*.2})`;g.lineWidth=1+r()*3;g.beginPath();const x=r()*w;g.moveTo(x,h);g.bezierCurveTo(x+r()*30-15,h*.6,x+r()*30-15,h*.3,x+r()*40-20,0);g.stroke();}},2,1);
+const groundTex=tex(256,256,(g,w,h)=>{g.fillStyle='#4e3626';g.fillRect(0,0,w,h);const r=rng(9);for(let i=0;i<500;i++){g.fillStyle=`rgba(${r()<.5?'120,85,60':'25,15,10'},${r()*.25})`;const s=1+r()*6;g.beginPath();g.arc(r()*w,r()*h,s,0,Math.PI*2);g.fill();}},26,26);
+const awningTex=tex(512,64,(g,w,h)=>{const n=14;for(let i=0;i<n;i++){g.fillStyle=i%2?'#1f4038':'#d6a24a';g.fillRect(i*w/n,0,w/n+1,h);}g.fillStyle='rgba(0,0,0,.08)';for(let y=0;y<h;y+=3)g.fillRect(0,y,w,1);});
+const valanceTex=tex(512,64,(g,w,h)=>{const n=14;for(let i=0;i<n;i++){g.fillStyle=i%2?'#1f4038':'#d6a24a';g.fillRect(i*w/n,0,w/n+1,h);}g.globalCompositeOperation='destination-out';const sc=28;for(let x=0;x<w+sc;x+=sc*2){g.beginPath();g.arc(x+sc,h+6,sc*.95,0,Math.PI*2);g.fill();}});
+valanceTex.wrapS=THREE.ClampToEdgeWrapping;
+const glowTex=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');const gr=g.createRadialGradient(64,64,0,64,64,64);gr.addColorStop(0,'rgba(255,220,150,1)');gr.addColorStop(.18,'rgba(255,190,100,.55)');gr.addColorStop(.5,'rgba(255,150,60,.12)');gr.addColorStop(1,'rgba(255,140,50,0)');g.fillStyle=gr;g.fillRect(0,0,128,128);const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;return t;})();
+
+const M=o=>new THREE.MeshStandardMaterial(o);
+const shadow=o=>{o.traverse(c=>{if(c.isMesh){c.castShadow=true;c.receiveShadow=true;}});return o;};
+
+/* sky */
+const skyU={top:{value:new THREE.Color()},horizon:{value:new THREE.Color()},bottom:{value:new THREE.Color()}};
+scene.add(new THREE.Mesh(new THREE.SphereGeometry(70,32,16),new THREE.ShaderMaterial({side:THREE.BackSide,depthWrite:false,uniforms:skyU,
+  vertexShader:'varying vec3 vP;void main(){vP=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+  fragmentShader:'uniform vec3 top;uniform vec3 horizon;uniform vec3 bottom;varying vec3 vP;void main(){float h=vP.y;vec3 c=h>0.?mix(horizon,top,pow(clamp(h*1.4,0.,1.),.6)):mix(horizon,bottom,pow(clamp(-h*3.,0.,1.),.5));gl_FragColor=vec4(c,1.);}'})));
+
+/* lights */
+const hemi=new THREE.HemisphereLight(0x8090b8,0x3a2a20,.4);scene.add(hemi);
+const sun=new THREE.DirectionalLight(0xff9a55,.55);sun.castShadow=true;sun.shadow.mapSize.setScalar(lite?1024:1536);
+Object.assign(sun.shadow.camera,{left:-5,right:5,top:5,bottom:-5,near:.5,far:30});sun.shadow.bias=-.0006;sun.shadow.normalBias=.02;
+sun.target.position.set(0,1,0);scene.add(sun,sun.target);
+const lamps=[-1.8,0,1.8].map(x=>{const l=new THREE.PointLight(0xffb866,1,9,1.6);l.position.set(x,2.55,1.35);scene.add(l);return l;});
+/* volumetric cones */
+const coneU={uI:{value:1},uC:{value:new THREE.Color(0xffc27a)}};
+const coneMat=new THREE.ShaderMaterial({uniforms:coneU,transparent:true,depthWrite:false,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,
+  vertexShader:'varying vec2 vUv;varying vec3 vN;varying vec3 vV;void main(){vUv=uv;vec4 wp=modelMatrix*vec4(position,1.);vN=normalize(mat3(modelMatrix)*normal);vV=normalize(cameraPosition-wp.xyz);gl_Position=projectionMatrix*viewMatrix*wp;}',
+  fragmentShader:'uniform float uI;uniform vec3 uC;varying vec2 vUv;varying vec3 vN;varying vec3 vV;void main(){float f=pow(abs(dot(vN,vV)),2.2);float a=pow(vUv.y,1.7)*f*uI*.14;gl_FragColor=vec4(uC,a);}'});
+for(const l of lamps){const c=new THREE.Mesh(new THREE.ConeGeometry(.95,2.3,32,1,true),coneMat);c.position.set(l.position.x,l.position.y-1.15,l.position.z-.05);scene.add(c);}
+
+/* ground */
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(90,90),M({map:groundTex,roughness:1}));
+ground.rotation.x=-Math.PI/2;ground.receiveShadow=true;scene.add(ground);
+
+/* stall */
+const stall=new THREE.Group();scene.add(stall);
+const tableWood=M({map:woodTex('#6b4428',21,2,1),roughness:.85});
+const tableTop=new THREE.Mesh(new THREE.BoxGeometry(6.6,.12,2.3),tableWood);tableTop.position.y=.94;stall.add(tableTop);
+const apron=new THREE.Mesh(new THREE.BoxGeometry(6.6,.32,.06),tableWood);apron.position.set(0,.74,1.13);stall.add(apron);
+for(const x of[-3.1,3.1])for(const z of[-1,1]){const leg=new THREE.Mesh(new THREE.BoxGeometry(.12,.88,.12),tableWood);leg.position.set(x,.44,z);stall.add(leg);}
+const mat=new THREE.Mesh(new THREE.PlaneGeometry(6.2,1.5),M({map:raffiaTex(14,4,3),roughness:1}));mat.rotation.x=-Math.PI/2;mat.position.set(0,1.003,.12);stall.add(mat);
+const poleMat=M({map:woodTex('#4a2f1c',4,1,3),roughness:.9});
+for(const [x,z,h] of[[-3.3,1.5,2.98],[3.3,1.5,2.98],[-3.3,-1.35,3.38],[3.3,-1.35,3.38]]){const p=new THREE.Mesh(new THREE.CylinderGeometry(.05,.06,h,10),poleMat);p.position.set(x,h/2,z);stall.add(p);}
+const shelf=new THREE.Mesh(new THREE.BoxGeometry(6.4,.07,.42),tableWood);shelf.position.set(0,1.62,-1.05);stall.add(shelf);
+for(const x of[-3.0,3.0]){const s=new THREE.Mesh(new THREE.BoxGeometry(.07,1.62,.07),tableWood);s.position.set(x,.81,-1.05);stall.add(s);}
+const awnGeo=new THREE.PlaneGeometry(7.3,3.0,40,12);
+const awning=new THREE.Mesh(awnGeo,M({map:awningTex,roughness:.95,side:THREE.DoubleSide}));
+awning.rotation.x=-Math.PI/2+.14;awning.position.set(0,3.18,.08);awning.castShadow=true;stall.add(awning);
+const awnBase=awnGeo.attributes.position.array.slice();
+const valGeo=new THREE.PlaneGeometry(7.3,.36,40,3);
+const valance=new THREE.Mesh(valGeo,M({map:valanceTex,roughness:.95,side:THREE.DoubleSide,transparent:true,alphaTest:.5}));valance.position.set(0,2.82,1.56);stall.add(valance);
+const valBase=valGeo.attributes.position.array.slice();
+const drapes=[];
+for(const [x,seed] of[[-1.6,31],[1.6,47]]){const geo=new THREE.PlaneGeometry(1.4,1.25,10,12);const t=silkTex(seed,LAMBA_COLS);t.rotation=Math.PI/2;t.center.set(.5,.5);const m=new THREE.Mesh(geo,M({map:t,roughness:.7,side:THREE.DoubleSide}));m.position.set(x,2.42,-1.22);stall.add(m);drapes.push({m,base:geo.attributes.position.array.slice(),ph:x});}
+const bulbMat=M({color:0xffe2a8,emissive:0xffb85c,emissiveIntensity:2.4,roughness:.4});
+const glowMat=new THREE.SpriteMaterial({map:glowTex,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,opacity:.9});
+const pts=[];for(let i=0;i<=24;i++){const x=-3.3+6.6*i/24;pts.push(new THREE.Vector3(x,2.86-.28*(1-(x/3.3)**2),1.52));}
+stall.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),60,.007,5),M({color:0x1a1410,roughness:.8})));
+const bulbGeo=new THREE.SphereGeometry(.045,12,8);
+for(let i=1;i<24;i+=2){const b=new THREE.Mesh(bulbGeo,bulbMat);b.position.copy(pts[i]).add(new THREE.Vector3(0,-.06,0));const s=new THREE.Sprite(glowMat);s.scale.setScalar(.42);b.add(s);stall.add(b);}
+const far=new THREE.Group();scene.add(far);
+const fr=rng(77);
+for(let i=0;i<14;i++){const w=2+fr()*2.5,h=2.2+fr()*1.2;const x=(i-7)*4.2+fr()*2,z=-9-fr()*9;
+  const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,1.6),M({color:0x2a2324,roughness:1}));b.position.set(x,h/2,z);far.add(b);
+  const roof=new THREE.Mesh(new THREE.BoxGeometry(w+.5,.12,2.2),M({color:fr()<.5?0x7a5a2a:0x2c4a40,roughness:1}));roof.position.set(x,h+.1,z+.2);roof.rotation.x=.12;far.add(roof);
+  for(let k=0;k<4;k++){const bb=new THREE.Mesh(bulbGeo,bulbMat);bb.position.set(x-w/2+(k+.5)*w/4,h-.1,z+1.2);const s=new THREE.Sprite(glowMat);s.scale.setScalar(.7);bb.add(s);far.add(bb);}
+}
+
+/* products */
+function lathe(pts,mat,seg=48){return new THREE.Mesh(new THREE.LatheGeometry(pts.map(p=>new THREE.Vector2(p[0],p[1])),seg),mat);}
+function buildSoubique(seed=7){const g=new THREE.Group();const m=M({map:raffiaTex(10,4,seed),roughness:.95,side:THREE.DoubleSide});
+  g.add(lathe([[0,0],[.22,0],[.29,.04],[.33,.16],[.345,.3],[.34,.38]],m));
+  const rim=new THREE.Mesh(new THREE.TorusGeometry(.34,.022,8,48),M({map:raffiaTex(20,1,seed+1),roughness:.95}));rim.rotation.x=Math.PI/2;rim.position.y=.38;g.add(rim);
+  const handle=new THREE.Mesh(new THREE.TorusGeometry(.32,.022,8,32,Math.PI),M({map:raffiaTex(12,1,seed+2),roughness:.95}));handle.position.y=.38;g.add(handle);return g;}
+function buildJarre(){const g=new THREE.Group();g.add(lathe([[0,0],[.15,0],[.21,.07],[.27,.24],[.265,.42],[.18,.58],[.11,.66],[.115,.72],[.15,.75],[.13,.765],[.1,.74]],M({map:terraTex,roughness:.92,side:THREE.DoubleSide})));return g;}
+function buildZebu(){const g=new THREE.Group();const m=M({map:woodTex('#4f2a1a',13,1,1),roughness:.45,metalness:.05});
+  const base=new THREE.Mesh(new THREE.BoxGeometry(.56,.04,.26),M({map:woodTex('#2e1a10',14,1,1),roughness:.5}));base.position.y=.02;g.add(base);
+  const body=new THREE.Mesh(new THREE.CapsuleGeometry(.12,.3,6,16),m);body.rotation.z=Math.PI/2;body.position.y=.36;body.scale.set(1,1,.85);g.add(body);
+  const hump=new THREE.Mesh(new THREE.SphereGeometry(.1,16,12),m);hump.position.set(.11,.47,0);hump.scale.set(1,.9,.8);g.add(hump);
+  const neck=new THREE.Mesh(new THREE.CylinderGeometry(.06,.08,.14,12),m);neck.position.set(.25,.4,0);neck.rotation.z=-1.1;g.add(neck);
+  const head=new THREE.Mesh(new THREE.SphereGeometry(.07,16,12),m);head.position.set(.33,.38,0);head.scale.set(1.35,.85,.8);g.add(head);
+  const horns=new THREE.Mesh(new THREE.TorusGeometry(.075,.012,6,20,Math.PI),M({color:0xe6d3a8,roughness:.4}));horns.rotation.y=Math.PI/2;horns.position.set(.31,.44,0);g.add(horns);
+  for(const x of[-.15,.15])for(const z of[-.06,.06]){const leg=new THREE.Mesh(new THREE.CylinderGeometry(.028,.022,.26,8),m);leg.position.set(x,.17,z);g.add(leg);}
+  const tail=new THREE.Mesh(new THREE.CylinderGeometry(.01,.006,.2,6),m);tail.position.set(-.29,.29,0);tail.rotation.z=.35;g.add(tail);return g;}
+function buildLamba(){const g=new THREE.Group();
+  [['#7a2e3a','#c9873a','#e8d7b0','#2f4a3e'],['#3c2f5c','#e8d7b0','#a8452f'],['#2f4a3e','#c9873a','#e8d7b0']].forEach((c,i)=>{const s=new THREE.Mesh(new THREE.BoxGeometry(.52,.045,.38),M({map:silkTex(60+i,c),roughness:.6}));s.position.set((i%2?.015:-.01),.024+i*.047,(i-1)*.012);s.rotation.y=(i-1)*.05;g.add(s);});
+  const roll=new THREE.Mesh(new THREE.CylinderGeometry(.075,.075,.5,24),M({map:silkTex(71,LAMBA_COLS),roughness:.55}));roll.rotation.z=Math.PI/2;roll.position.set(0,.22,0);g.add(roll);
+  const fringe=new THREE.Mesh(new THREE.CylinderGeometry(.078,.078,.04,24),M({color:0xe8d7b0,roughness:.9}));fringe.rotation.z=Math.PI/2;fringe.position.set(.27,.22,0);g.add(fringe);return g;}
+function buildBol(){const g=new THREE.Group();
+  g.add(lathe([[0,0],[.07,0],[.12,.015],[.17,.05],[.2,.1],[.215,.15],[.205,.16],[.18,.11],[.14,.06],[.06,.035],[0,.035]],M({map:hornTex,roughness:.22,metalness:.12,side:THREE.DoubleSide})));
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(.075,.015,8,24),M({map:hornTex,roughness:.3}));ring.rotation.x=Math.PI/2;ring.position.y=.008;g.add(ring);return g;}
+function buildCoffret(){const g=new THREE.Group();const side=M({map:woodTex('#5b3322',33,1,1),roughness:.5});const topM=M({map:marqTex,roughness:.45});
+  const box=new THREE.Mesh(new THREE.BoxGeometry(.44,.17,.32),[side,side,topM,side,side,side]);box.position.y=.085;g.add(box);
+  const inner=new THREE.Mesh(new THREE.BoxGeometry(.4,.01,.28),M({color:0x7a1f24,roughness:.9}));inner.position.y=.165;g.add(inner);
+  const pivot=new THREE.Group();pivot.position.set(0,.17,-.16);g.add(pivot);
+  const lid=new THREE.Mesh(new THREE.BoxGeometry(.46,.05,.34),[side,side,topM,side,side,side]);lid.position.set(0,.025,.16);pivot.add(lid);
+  g.userData.lid=pivot;return g;}
+const BUILD={soubique:()=>buildSoubique(7),jarre:buildJarre,zebu:buildZebu,lamba:buildLamba,bol:buildBol,coffret:buildCoffret};
+const LAYOUT={soubique:[-2.4,.2,.3],jarre:[-1.45,-.15,0],zebu:[-.45,.28,-.5],lamba:[.55,0,.15],bol:[1.5,.32,0],coffret:[2.45,.05,-.35]};
+const items=[];
+for(const p of PRODUCTS.filter(p=>STALL.includes(p.id))){
+  const g=shadow(BUILD[p.id]());const [x,z,ry]=LAYOUT[p.id];
+  g.position.set(x,1.0,z);g.rotation.y=ry;g.userData.kind='product';g.userData.pid=p.id;
+  const mats=new Set();g.traverse(c=>{if(c.isMesh)(Array.isArray(c.material)?c.material:[c.material]).forEach(mm=>{mm.emissive=new THREE.Color(0xffa040);mm.emissiveIntensity=0;mats.add(mm);});});
+  const box=new THREE.Box3().setFromObject(g);scene.add(g);
+  items.push({data:p,group:g,baseY:1.0,baseRot:ry,mats:[...mats],h:0,f:0,hop:0,top:box.max.y-1.0,lid:g.userData.lid||null});
+}
+const itemById=Object.fromEntries(items.map(i=>[i.data.id,i]));
+for(const [x,s] of[[-2.4,.55],[-1.9,.42],[1.9,.5],[2.5,.4]]){const j=shadow(buildJarre());j.scale.setScalar(s);j.position.set(x,1.655,-1.05);stall.add(j);}
+for(const x of[-.7,.7]){const b=shadow(buildBol());b.scale.setScalar(.9);b.position.set(x,1.655,-1.05);stall.add(b);}
+for(const [x,y,z,s,r] of[[-3.75,0,.5,1.1,0],[-3.75,.42,.5,.95,.4],[3.8,0,.2,1.15,0]]){const b=shadow(buildSoubique(90+x|0));b.scale.setScalar(s);b.position.set(x,y,z);b.rotation.y=r;scene.add(b);}
+const hangers=[];
+for(const [x,ph] of[[-2.95,0],[2.95,1.7]]){
+  const pivot=new THREE.Group();pivot.position.set(x,3.0,1.0);pivot.userData.kind='hanger';scene.add(pivot);
+  const rope=new THREE.Mesh(new THREE.CylinderGeometry(.006,.006,.5,5),M({color:0xc9a46a,roughness:1}));rope.position.y=-.25;pivot.add(rope);
+  const b=shadow(buildSoubique(40+ph*10|0));b.scale.setScalar(.6);b.position.y=-.5-.71*.6;pivot.add(b);
+  hangers.push({pivot,a:0,v:0,ph});
+}
+/* décor réaliste : modèles CC0 de Poly Haven (assets/models), chargés après la scène.
+   Sans serveur (file://) ou si un fichier manque, l'étal reste tel quel. */
+if(THREE.GLTFLoader&&location.protocol!=='file:'){
+  const loader=new THREE.GLTFLoader();
+  const loadDecor=id=>new Promise((res,rej)=>loader.load(`assets/models/${id}/${id}_1k.gltf`,g=>res(g.scene),undefined,rej));
+  const setDown=(o,x,z,ry,y=0)=>{o.rotation.y=ry;o.position.set(x,0,z);o.updateMatrixWorld(true);o.position.y=y-new THREE.Box3().setFromObject(o).min.y;scene.add(shadow(o));o.updateMatrixWorld(true);return new THREE.Box3().setFromObject(o);};
+  /* remplit une caisse ouverte (encore à l'origine) d'un tas d'objets, en une seule instance */
+  const fill=(crate,src,n,seed,lie)=>{
+    let mesh=null;src.traverse(c=>{if(c.isMesh&&!mesh)mesh=c;});
+    const b=new THREE.Box3().setFromObject(crate),r=rng(seed),d=new THREE.Object3D();
+    const cx=(b.min.x+b.max.x)/2,cz=(b.min.z+b.max.z)/2,sx=(b.max.x-b.min.x)*.42,sz=(b.max.z-b.min.z)*.36;
+    const im=new THREE.InstancedMesh(mesh.geometry,mesh.material,n);
+    for(let i=0;i<n;i++){
+      const u=r()*2-1,v=r()*2-1;
+      d.position.set(cx+u*sx,b.max.y-.07+.05*(1-(u*u+v*v)/2)+r()*.03+(lie?.06:0),cz+v*sz);
+      d.rotation.set(lie?Math.PI/2+(r()-.5)*.5:(r()-.5)*.8,r()*Math.PI*2,lie?(r()-.5)*.4:(r()-.5)*.8,'YXZ');
+      d.scale.setScalar(.85+r()*.3);d.updateMatrix();im.setMatrixAt(i,d.matrix);
+    }
+    crate.add(im);
+  };
+  const want=lite?['wooden_crate_01','food_lychee_01']:['wooden_crate_01','food_lychee_01','sweet_potato','folding_wooden_stool'];
+  Promise.allSettled(want.map(loadDecor)).then(rs=>{
+    const m={};want.forEach((id,i)=>{if(rs[i].status==='fulfilled')m[id]=rs[i].value;});
+    const crate=m.wooden_crate_01;
+    const open=()=>{const c=crate.clone();['wooden_crate_01_lid','wooden_crate_01_latch'].forEach(k=>{const o=c.getObjectByName(k);if(o)o.removeFromParent();});return c;};
+    if(crate){
+      setDown(crate.clone(),-4.5,-.35,.25);
+      if(m.food_lychee_01){const c=open();fill(c,m.food_lychee_01,170,11,false);setDown(c,-2.75,1.7,.3);}
+      if(m.sweet_potato){const c=open();fill(c,m.sweet_potato,46,23,true);setDown(c,-1.7,.45,.06);}
+    }
+    if(m.folding_wooden_stool)setDown(m.folding_wooden_stool,-4.5,1.25,.6);
+  });
+}
+const DUST=lite?90:260;const dGeo=new THREE.BufferGeometry();const dPos=new Float32Array(DUST*3);const dr=rng(5);
+for(let i=0;i<DUST;i++){dPos[i*3]=(dr()-.5)*7;dPos[i*3+1]=1+dr()*2.2;dPos[i*3+2]=-1+dr()*2.8;}
+dGeo.setAttribute('position',new THREE.BufferAttribute(dPos,3));
+const dMat=new THREE.PointsMaterial({map:glowTex,color:0xffd28a,size:.05,transparent:true,opacity:.6,depthWrite:false,blending:THREE.AdditiveBlending});
+scene.add(new THREE.Points(dGeo,dMat));
+
+/* moods */
+const MOODS={
+  soir:{top:'#16233f',horizon:'#d9825a',bottom:'#3a2a26',fog:'#4a3434',hemiSky:'#7f8fb8',hemiGround:'#3a2a20',hemi:.42,sun:'#ff9a55',sunI:.55,sunPos:[-6,3.2,3.5],bulb:2.6,lamp:1.25,exposure:1.12,dust:.6,glow:.9,cone:1},
+  matin:{top:'#6fa6d2',horizon:'#f2dcb4',bottom:'#a08a6e',fog:'#d8cbb2',hemiSky:'#cfe0f0',hemiGround:'#6b5a46',hemi:.9,sun:'#fff0d6',sunI:1.35,sunPos:[-4,8,5],bulb:.5,lamp:.12,exposure:1.0,dust:.2,glow:.12,cone:.05}
+};
+const COLORS=['top','horizon','bottom','fog','hemiSky','hemiGround','sun'],NUMS=['hemi','sunI','bulb','lamp','exposure','dust','glow','cone'];
+function snap(m){const o={};COLORS.forEach(k=>o[k]=new THREE.Color(m[k]));NUMS.forEach(k=>o[k]=m[k]);o.sunPos=new THREE.Vector3(...m.sunPos);return o;}
+const mood=snap(MOODS.soir);
+function applyMood(){
+  skyU.top.value.copy(mood.top);skyU.horizon.value.copy(mood.horizon);skyU.bottom.value.copy(mood.bottom);
+  scene.fog.color.copy(mood.fog);hemi.color.copy(mood.hemiSky);hemi.groundColor.copy(mood.hemiGround);hemi.intensity=mood.hemi;
+  sun.color.copy(mood.sun);sun.intensity=mood.sunI;sun.position.copy(mood.sunPos);
+  bulbMat.emissiveIntensity=mood.bulb;renderer.toneMappingExposure=mood.exposure;dMat.opacity=mood.dust;glowMat.opacity=mood.glow;coneU.uI.value=mood.cone;
+}
+applyMood();
+function setMood(name){
+  const from={};COLORS.forEach(k=>from[k]=mood[k].clone());NUMS.forEach(k=>from[k]=mood[k]);from.sunPos=mood.sunPos.clone();
+  const to=snap(MOODS[name]);
+  document.querySelectorAll('.mood button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mood===name)));placePill();
+  tween(1600,k=>{COLORS.forEach(c=>mood[c].lerpColors(from[c],to[c],k));NUMS.forEach(n=>mood[n]=from[n]+(to[n]-from[n])*k);mood.sunPos.lerpVectors(from.sunPos,to.sunPos,k);applyMood();});
+}
+document.querySelectorAll('.mood button').forEach(b=>b.addEventListener('click',()=>setMood(b.dataset.mood)));
+
+/* tweens */
+const tweens=[];
+const ease=k=>k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
+const easeOutExpo=k=>k===1?1:1-Math.pow(2,-10*k);
+function tween(dur,fn,ef=ease){return new Promise(res=>tweens.push({t0:performance.now(),dur:reduced?1:dur,fn,ef,res}));}
+function runTweens(now){for(let i=tweens.length-1;i>=0;i--){const t=tweens[i];const k=Math.min(1,(now-t.t0)/t.dur);t.fn(t.ef(k));if(k>=1){tweens.splice(i,1);t.res();}}}
+
+/* framing */
+const HOME={pos:new THREE.Vector3(),tgt:new THREE.Vector3()};
+function frameHome(){const w=stage.clientWidth;
+  if(w<600){camera.fov=50;HOME.pos.set(0,2.75,12.2);HOME.tgt.set(0,2.6,0);}
+  else if(w<1000){camera.fov=44;HOME.pos.set(-1.2,2.9,9.0);HOME.tgt.set(-1.2,1.45,0);}
+  else{camera.fov=40;HOME.pos.set(-2.6,2.95,9.3);HOME.tgt.set(-2.6,1.36,0);}
+  camera.updateProjectionMatrix();}
+function resize(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;frameHome();camera.updateProjectionMatrix();placePill();}
+resize();
+new ResizeObserver(resize).observe(stage);
+
+/* focus mode */
+let focused=null,saved=null,busy=true,qty=1;
+function animateCamera(pos,tgt,dur,ef=ease){const p0=camera.position.clone(),t0=controls.target.clone();return tween(dur,k=>{camera.position.lerpVectors(p0,pos,k);controls.target.lerpVectors(t0,tgt,k);camera.lookAt(controls.target);},ef);}
+function resetRot(it){const g=it.group;const two=Math.PI*2;const target=it.baseRot+Math.round((g.rotation.y-it.baseRot)/two)*two;const r0=g.rotation.y,x0=g.rotation.x;tween(800,k=>{g.rotation.y=r0+(target-r0)*k;g.rotation.x=x0*(1-k);});}
+function focusOn(it){
+  if(!saved)saved={pos:camera.position.clone(),tgt:controls.target.clone()};
+  if(focused&&focused!==it)resetRot(focused);
+  const switching=!!focused;focused=it;controls.enabled=false;stage.classList.add('is-focus');hideTag();
+  const narrow=stage.clientWidth<760;const p=it.group.position;
+  const offX=narrow?0:.18+it.top*.35,offY=narrow?-(.42+it.top*.55):0,mid=1.0+.14+it.top*.5;
+  const tgt=new THREE.Vector3(p.x+offX,mid+offY,p.z);
+  const dist=(narrow?1.7:1.25)+it.top*2.1;
+  const pos=new THREE.Vector3(p.x+offX,mid+.3+dist*.22+offY*.4,p.z+dist);
+  animateCamera(pos,tgt,switching?1000:1300);setCursor('Tourner');
+  qty=1;$('qVal').textContent=qty;
+  const d=$('detail');
+  if(switching){d.classList.add('swap');setTimeout(()=>{fillPanel(it);requestAnimationFrame(()=>d.classList.remove('swap'));},180);}else{fillPanel(it);d.classList.add('open');}
+}
+function unfocus(){
+  if(!focused)return;const it=focused;focused=null;resetRot(it);
+  $('detail').classList.remove('open');stage.classList.remove('is-focus');
+  const s=saved;saved=null;busy=true;
+  animateCamera(s.pos,s.tgt,1100).then(()=>{controls.enabled=true;busy=false;});
+}
+function step(d){if(!focused)return;const i=items.indexOf(focused);focusOn(items[(i+d+items.length)%items.length]);}
+function fillPanel(it){const p=it.data;const i=items.indexOf(it);
+  $('dIdx').textContent=String(i+1).padStart(2,'0');$('dCat').textContent=p.cat;$('dName').textContent=p.name;$('dSize').textContent=p.size;$('dStock').textContent=p.stock;$('dDesc').textContent=p.desc;$('dPrice').textContent=fmt(p.price);
+  const m=makerOf(p);$('dMaker').hidden=!m;if(m)$('dMaker').innerHTML=`Fait par <b>${esc(m.name)}</b> · ${esc(m.village)}`;
+  document.querySelectorAll('#strip button').forEach(b=>b.setAttribute('aria-current',String(b.dataset.id===p.id)));}
+function renderStrip(){const s=$('strip');s.innerHTML='';for(const it of items){const b=document.createElement('button');b.dataset.id=it.data.id;b.setAttribute('aria-label',it.data.name);b.innerHTML=thumbs[it.data.id]?`<img src="${thumbs[it.data.id].a}" alt="">`:'';b.addEventListener('click',()=>focusOn(it));s.appendChild(b);}}
+$('dClose').addEventListener('click',unfocus);
+$('dPrev').addEventListener('click',()=>step(-1));
+$('dNext').addEventListener('click',()=>step(1));
+$('qMinus').addEventListener('click',()=>{qty=Math.max(1,qty-1);$('qVal').textContent=qty;});
+$('qPlus').addEventListener('click',()=>{qty=Math.min(9,qty+1);$('qVal').textContent=qty;});
+$('dAdd').addEventListener('click',()=>{if(!focused)return;addToCart(focused.data.id,qty);const b=$('dAdd');b.classList.add('done');b.textContent='Ajouté au panier ✓';setTimeout(()=>{b.classList.remove('done');b.textContent='Ajouter au panier';},1500);});
+$('heroExplore').addEventListener('click',()=>{if(!busy)focusOn(itemById.soubique);});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){if($('cart').classList.contains('open'))closeCart();else unfocus();}
+  if(focused&&e.key==='ArrowRight')step(1);
+  if(focused&&e.key==='ArrowLeft')step(-1);
+});
+window.__focusProduct=id=>{const it=itemById[id];if(!it)return;if(busy){setTimeout(()=>window.__focusProduct(id),300);return;}focusOn(it);};
+window.__hop=id=>{const it=itemById[id];if(!it)return;tween(560,k=>{it.hop=Math.sin(k*Math.PI)*.15;});};
+
+/* intro */
+camera.position.copy(HOME.pos).add(new THREE.Vector3(-2.8,1.9,6.5));controls.target.copy(HOME.tgt).add(new THREE.Vector3(-.6,.4,0));camera.lookAt(controls.target);
+controls.enabled=false;
+animateCamera(HOME.pos.clone(),HOME.tgt.clone(),3200,easeOutExpo).then(()=>{controls.enabled=true;busy=false;});
+
+/* cursor */
+const cursorEl=$('cursor');let cx=-100,cy=-100,tcx=-100,tcy=-100;
+function setCursor(label){const big=!!label;cursorEl.classList.toggle('big',big);if(big)cursorEl.querySelector('span').textContent=label;}
+if(fine){
+  canvas.addEventListener('pointerenter',()=>cursorEl.classList.add('show'));
+  canvas.addEventListener('pointerleave',()=>cursorEl.classList.remove('show'));
+  addEventListener('pointermove',e=>{tcx=e.clientX;tcy=e.clientY;},{passive:true});
+}
+
+/* pointer */
+const ray=new THREE.Raycaster(),ndc=new THREE.Vector2();
+const pickables=[...items.map(i=>i.group),...hangers.map(h=>h.pivot)];
+let hoverIt=null,down=null,dragging=false,mx=0,my=0,smx=0,smy=0;
+function pick(ev){const r=canvas.getBoundingClientRect();ndc.set(((ev.clientX-r.left)/r.width)*2-1,-((ev.clientY-r.top)/r.height)*2+1);ray.setFromCamera(ndc,camera);const hits=ray.intersectObjects(pickables,true);if(!hits.length)return null;let o=hits[0].object;while(o&&!o.userData.kind)o=o.parent;return o;}
+const tag=$('hoverTag');
+function hideTag(){tag.classList.remove('show');}
+canvas.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY,lx:e.clientX,ly:e.clientY,moved:false};if(focused){try{canvas.setPointerCapture(e.pointerId);}catch(_){}}});
+canvas.addEventListener('pointermove',e=>{
+  const r=canvas.getBoundingClientRect();mx=((e.clientX-r.left)/r.width)*2-1;my=((e.clientY-r.top)/r.height)*2-1;
+  if(down){const dx=e.clientX-down.lx,dy=e.clientY-down.ly;down.lx=e.clientX;down.ly=e.clientY;
+    if(Math.abs(e.clientX-down.x)+Math.abs(e.clientY-down.y)>6)down.moved=true;
+    if(focused&&down.moved){dragging=true;focused.group.rotation.y+=dx*.012;focused.group.rotation.x=THREE.MathUtils.clamp(focused.group.rotation.x+dy*.006,-.45,.45);}
+    return;}
+  if(busy||e.pointerType==='touch'){hoverIt=null;return;}
+  const o=pick(e);
+  if(focused){hoverIt=null;setCursor(o&&o.userData.kind==='product'&&itemById[o.userData.pid]===focused?'Tourner':(o&&o.userData.kind==='product'?'Examiner':'Retour'));return;}
+  hoverIt=o&&o.userData.kind==='product'?itemById[o.userData.pid]:null;
+  setCursor(hoverIt?'Examiner':(o?'Balancer':''));
+});
+canvas.addEventListener('pointerleave',()=>{if(!down)hoverIt=null;mx=0;my=0;});
+function endPointer(e){
+  if(!down)return;const wasMoved=down.moved;down=null;dragging=false;
+  if(wasMoved||busy)return;
+  const o=pick(e);
+  if(o&&o.userData.kind==='product'){const it=itemById[o.userData.pid];if(it!==focused)focusOn(it);}
+  else if(o&&o.userData.kind==='hanger'){const h=hangers.find(h=>h.pivot===o);h.v+=(Math.random()<.5?-1:1)*2.4;}
+  else if(focused)unfocus();
+}
+canvas.addEventListener('pointerup',endPointer);
+canvas.addEventListener('pointercancel',()=>{down=null;dragging=false;});
+
+/* thumbnails (two angles each) */
+(function makeThumbs(){
+  let tr;try{tr=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});}catch(e){return;}
+  tr.setPixelRatio(1);tr.setSize(480,360);tr.outputEncoding=THREE.sRGBEncoding;tr.toneMapping=THREE.ACESFilmicToneMapping;tr.toneMappingExposure=1.12;tr.setClearColor(0x000000,0);
+  const ts=new THREE.Scene();ts.add(new THREE.HemisphereLight(0xfff4e0,0x3a2a20,.85));const dl=new THREE.DirectionalLight(0xffe2b8,1.2);dl.position.set(-2,3,3);ts.add(dl);const fl=new THREE.DirectionalLight(0x9fb0d0,.4);fl.position.set(3,1,-2);ts.add(fl);
+  const tc=new THREE.PerspectiveCamera(30,4/3,.01,20);
+  for(const it of items){
+    const out={};
+    for(const [key,ang] of[['a',.35],['b',2.1]]){
+      const c=it.group.clone(true);c.position.set(0,0,0);c.rotation.set(0,it.baseRot+ang,0);
+      if(it.lid&&key==='b'){c.traverse(o=>{if(o.isGroup&&o.children.length===1&&o.position.z<-.1)o.rotation.x=-1.0;});}
+      ts.add(c);
+      const b=new THREE.Box3().setFromObject(c);const ctr=b.getCenter(new THREE.Vector3());const sz=b.getSize(new THREE.Vector3());const d=Math.max(sz.x,sz.y,sz.z);
+      tc.position.set(ctr.x,ctr.y+d*.55,ctr.z+d*2.15);tc.lookAt(ctr);
+      tr.render(ts,tc);try{out[key]=tr.domElement.toDataURL('image/png');}catch(e){}
+      ts.remove(c);
+    }
+    if(out.a)thumbs[it.data.id]={a:out.a,b:out.b||out.a};
+  }
+  tr.dispose();try{tr.forceContextLoss();}catch(e){}
+  renderGrid();renderCart();renderStrip();
+})();
+
+/* loop */
+let visible=true;new IntersectionObserver(es=>{visible=es[0].isIntersecting;},{threshold:0}).observe(stage);
+const clock=new THREE.Clock();const tmp=new THREE.Vector3(),par=new THREE.Vector3();
+const copyEl=$('stageCopy');
+/* frame-rate governor: under 45 fps, lower the resolution step by step, then refresh shadows every 3rd frame */
+let gT0=0,gN=0,gLast=0,shadowEvery=1,frameNo=0;
+function govern(now){
+  const gap=now-gLast;gLast=now;
+  if(now<4000||gap>250){gT0=0;return;}
+  if(!gT0){gT0=now;gN=0;return;}
+  gN++;if(now-gT0<2000)return;
+  const fps=gN*1000/(now-gT0);gT0=0;
+  if(fps>=45)return;
+  if(dpr>1){dpr=Math.max(1,dpr-.25);renderer.setPixelRatio(dpr);}
+  else if(shadowEvery===1){shadowEvery=3;renderer.shadowMap.autoUpdate=false;}
+}
+function loop(now){
+  requestAnimationFrame(loop);
+  const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;
+  runTweens(now);
+  if(fine){cx+=(tcx-cx)*.22;cy+=(tcy-cy)*.22;cursorEl.style.transform=`translate(${cx}px,${cy}px)`;}
+  if(!visible){gT0=0;return;}
+  const motion=reduced?0:1;
+  /* scroll progress over the hero */
+  const rect=stage.getBoundingClientRect();const sp=clamp(-rect.top/rect.height,0,1);
+  if(!focused){copyEl.style.transform=`translateY(${sp*-90}px)`;copyEl.style.opacity=String(1-sp*1.4);}
+  /* wind */
+  { const a=awnGeo.attributes.position.array;for(let i=0;i<a.length;i+=3){a[i+2]=awnBase[i+2]+Math.sin(awnBase[i]*1.1+t*1.3+awnBase[i+1]*2)*.035*motion;}awnGeo.attributes.position.needsUpdate=true; }
+  { const a=valGeo.attributes.position.array;for(let i=0;i<a.length;i+=3){a[i+2]=valBase[i+2]+Math.sin(valBase[i]*1.4+t*1.8)*.05*(.5-valBase[i+1]/.36)*motion;}valGeo.attributes.position.needsUpdate=true; }
+  for(const d of drapes){const a=d.m.geometry.attributes.position.array;for(let i=0;i<a.length;i+=3){a[i+2]=d.base[i+2]+Math.sin(d.base[i]*2.2+t*1.1+d.ph)*.04*(.62-d.base[i+1])*motion;}d.m.geometry.attributes.position.needsUpdate=true;}
+  lamps.forEach((l,i)=>{l.intensity=mood.lamp*(1+(.05*Math.sin(t*13+i*2)+.03*Math.sin(t*7.3+i))*motion);});
+  for(const h of hangers){const wind=Math.sin(t*.7+h.ph)*.25*motion;h.v+=(-7*h.a-.9*h.v+wind)*dt;h.a=THREE.MathUtils.clamp(h.a+h.v*dt,-.7,.7);h.pivot.rotation.z=h.a;h.pivot.rotation.x=h.a*.35;}
+  if(motion){for(let i=0;i<DUST;i++){dPos[i*3+1]+=dt*(.04+(i%7)*.006);dPos[i*3]+=Math.sin(t*.5+i)*dt*.02;if(dPos[i*3+1]>3.2)dPos[i*3+1]=1;}dGeo.attributes.position.needsUpdate=true;}
+  for(const it of items){
+    const th=(it===hoverIt&&!focused)?1:0,tf=it===focused?1:0;
+    it.h+=(th-it.h)*Math.min(1,dt*9);it.f+=(tf-it.f)*Math.min(1,dt*4.5);
+    it.group.position.y=it.baseY+it.h*.07+it.f*.14+it.hop+(motion&&it===focused?Math.sin(t*1.6)*.012:0);
+    const e=it.h*.22+it.f*.05;for(const m of it.mats)m.emissiveIntensity=e;
+    if(it.lid)it.lid.rotation.x=-(it.f*1.05+it.h*.3);
+  }
+  if(focused&&!dragging&&motion)focused.group.rotation.y+=dt*.32;
+  if(hoverIt&&!focused){tmp.copy(hoverIt.group.position);tmp.y+=hoverIt.top+.12;tmp.project(camera);
+    tag.style.left=((tmp.x+1)/2*stage.clientWidth)+'px';tag.style.top=((1-tmp.y)/2*stage.clientHeight-10)+'px';
+    tag.querySelector('strong').textContent=hoverIt.data.name;tag.querySelector('span').textContent=fmt(hoverIt.data.price);tag.classList.add('show');}
+  else hideTag();
+  if(controls.enabled)controls.update();
+  /* parallax: pointer drift + scroll pull-back, applied only for the render */
+  smx+=(mx-smx)*Math.min(1,dt*3);smy+=(my-smy)*Math.min(1,dt*3);
+  const pk=focused?.25:1;
+  par.set(smx*.16*pk*motion,(-smy*.08*pk+sp*1.1)*motion,sp*1.4*motion);
+  camera.position.add(par);camera.lookAt(controls.target);
+  if(shadowEvery>1)renderer.shadowMap.needsUpdate=frameNo++%shadowEvery===0;
+  renderer.render(scene,camera);
+  camera.position.sub(par);
+  govern(now);
+}
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

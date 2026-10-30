@@ -1,0 +1,10 @@
+# système
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# éditeur
+.vscode/
+
+# dépendances éventuelles
+node_modules/
