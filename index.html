@@ -172,7 +172,7 @@ button{font:inherit;color:inherit}
 .icon-btn:hover{border-color:var(--raffia);transform:rotate(90deg)}
 .detail h2{font-size:2.15rem}
 .detail-meta{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-family:var(--mono);font-size:.72rem;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--muted)}
+.chip{display:inline-block;white-space:nowrap;font-family:var(--mono);font-size:.72rem;border:1px solid var(--line);border-radius:999px;padding:5px 11px;color:var(--muted)}
 .chip.stock{color:var(--laterite);border-color:color-mix(in srgb,var(--laterite) 40%,transparent)}
 .detail-desc{color:var(--muted);max-width:44ch}
 .detail-buy{margin-top:auto;display:grid;gap:14px;padding-top:18px;border-top:1px solid var(--line)}
@@ -253,38 +253,110 @@ section.band{padding-block:clamp(80px,11vw,140px)}
 @media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.steps li:nth-child(2){border-right:0;margin-right:0}.steps li:nth-child(n+3){border-top:1px solid var(--line)}}
 @media (max-width:540px){.steps{grid-template-columns:minmax(0,1fr)}.steps li{border-right:0;margin-right:0;border-top:1px solid var(--line)}.steps li:first-child{border-top:0}}
 
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:52px}
-@media (max-width:920px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:580px){.grid{grid-template-columns:minmax(0,1fr)}}
-.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .3s;will-change:transform}
-.card:hover{border-color:var(--line-strong);box-shadow:0 30px 60px -20px rgba(0,0,0,.4)}
-.card .glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(400px circle at var(--gx,50%) var(--gy,0%),color-mix(in srgb,var(--raffia) 16%,transparent),transparent 60%);opacity:0;transition:opacity .4s;z-index:1}
+/* collection : l'étal en mosaïque. Tuiles pleine image, pièces 3D posées sur une natte de raphia, étiquette kraft suspendue */
+.filters{position:relative;display:flex;gap:2px;margin-top:40px;padding:5px;border:1px solid var(--line);border-radius:999px;width:max-content;max-width:100%;background:var(--surface)}
+.filters button{position:relative;z-index:1;font:inherit;font-size:.86rem;border:0;background:none;color:var(--muted);padding:8px 14px;border-radius:999px;cursor:pointer;transition:color .35s;white-space:nowrap}
+.filters button:hover{color:var(--fg)}
+.filters button[aria-pressed="true"]{color:var(--raffia-ink)}
+.filters sup{font-family:var(--mono);font-size:.6rem;margin-left:3px;opacity:.65}
+.filters .pill{position:absolute;z-index:0;top:5px;bottom:5px;left:0;width:0;border-radius:999px;background:var(--raffia);transition:left .5s var(--ease),width .5s var(--ease)}
+@media (max-width:760px){.filters{overflow-x:auto;border-radius:16px;width:auto;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:clamp(250px,24vw,320px);grid-auto-flow:dense;gap:18px;margin-top:26px}
+.grid .f1{grid-column:1/3;grid-row:span 2}
+.grid .f2{grid-column:2/4;grid-row:span 2}
+.grid.filtered .card{grid-column:auto;grid-row:auto}
+@media (max-width:920px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(250px,42vw,330px)}.grid .f2{grid-column:1/3}}
+@media (max-width:580px){.grid{grid-template-columns:minmax(0,1fr);grid-auto-rows:340px}.grid .f1,.grid .f2{grid-column:auto;grid-row:auto}}
+.card{position:relative;isolation:isolate;border-radius:22px;overflow:hidden;background:var(--surface-2);transform:perspective(1200px) translateY(var(--lift,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .6s var(--ease),box-shadow .6s var(--ease),opacity .35s var(--ease),scale .45s var(--ease);will-change:transform}
+@media (hover:hover){.card:hover{--lift:-6px;box-shadow:0 34px 60px -26px rgba(0,0,0,.55)}}
+.card.out{opacity:0;scale:.94}
+.card .glare{position:absolute;inset:0;pointer-events:none;background:radial-gradient(420px circle at var(--gx,50%) var(--gy,0%),rgba(255,220,160,.22),transparent 60%);opacity:0;transition:opacity .4s;z-index:3}
 .card:hover .glare{opacity:1}
-.thumb{position:relative;aspect-ratio:4/3;max-width:100%;background:radial-gradient(ellipse at 50% 78%,var(--surface-2),var(--surface) 70%);overflow:hidden}
-.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .6s var(--ease),transform .9s var(--ease)}
-.thumb img.b{opacity:0}
-.card:hover .thumb img.a{opacity:0;transform:scale(1.05)}
-.card:hover .thumb img.b{opacity:1;transform:scale(1.05)}
-.thumb .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:1.6rem;color:color-mix(in srgb,var(--raffia) 70%,var(--muted));background:repeating-linear-gradient(45deg,transparent 0 10px,color-mix(in srgb,var(--raffia) 9%,transparent) 10px 12px),repeating-linear-gradient(-45deg,transparent 0 10px,color-mix(in srgb,var(--raffia) 9%,transparent) 10px 12px)}
-.thumb .tag{position:absolute;left:14px;top:14px;z-index:2;font-family:var(--mono);font-size:.68rem;background:color-mix(in srgb,var(--bg) 70%,transparent);border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.card-body{position:relative;z-index:2;padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
-.card-body h3{font-size:1.55rem}
+.thumb{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,rgba(255,240,210,.38),transparent 62%),repeating-linear-gradient(90deg,rgba(92,60,22,.13) 0 3px,transparent 3px 10px),repeating-linear-gradient(0deg,rgba(92,60,22,.11) 0 3px,transparent 3px 10px),#c9a66c}
+.thumb::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(18,12,6,.3) 0,transparent 24%,transparent 36%,rgba(18,12,6,.55) 62%,rgba(18,12,6,.92) 100%)}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:6% 10% 30%;box-sizing:border-box;transition:opacity .7s var(--ease),transform 1.4s var(--ease)}
+.thumb img.photo{object-fit:cover;padding:0;opacity:0}
+.thumb img.photo.ok{opacity:1}
+.thumb.swap img.b{opacity:0}
+@media (hover:hover){
+  .card:hover .thumb img.photo{transform:scale(1.07)}
+  .card:hover .thumb.swap img.a{opacity:0;transform:scale(1.05) rotate(-1deg)}
+  .card:hover .thumb.swap img.b{opacity:1;transform:scale(1.05)}
+}
+.thumb .ph{position:absolute;inset:0;display:grid;place-items:center;padding-bottom:22%;font-family:var(--display);font-size:2rem;color:rgba(70,45,15,.55)}
+.card .b3d{position:absolute;left:14px;top:14px;z-index:2;display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.06em;background:rgba(18,12,6,.55);color:#f6e7c8;border:1px solid rgba(246,231,200,.35);border-radius:999px;padding:4px 9px 4px 7px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.card .b3d svg{width:12px;height:12px}
+/* étiquette kraft suspendue à sa ficelle, qui se balance au survol */
+.ptag-w{position:absolute;right:20px;top:0;z-index:2;transform-origin:50% 0;rotate:-4deg;filter:drop-shadow(0 8px 10px rgba(0,0,0,.35))}
+.ptag-w::before{content:"";position:absolute;left:50%;top:0;width:1.5px;height:20px;margin-left:-.75px;background:#e9d4a4}
+.ptag{position:relative;margin-top:14px;display:grid;justify-items:center;gap:1px;padding:22px 13px 10px;min-width:74px;background:linear-gradient(180deg,#efdcb2,#e2c995);color:#2b1d0d;font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;clip-path:polygon(50% 0,100% 12px,100% 100%,0 100%,0 12px)}
+.ptag::before{content:"";position:absolute;top:8px;left:50%;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:#6b5025;box-shadow:inset 0 1px 2px rgba(0,0,0,.6)}
+.ptag b{font-family:var(--display);font-weight:400;font-size:1.25rem;letter-spacing:0;text-transform:none;line-height:1.1}
+@media (hover:hover){.card:hover .ptag-w{animation:tagswing 1.8s var(--ease)}}
+@keyframes tagswing{0%{rotate:-4deg}20%{rotate:7deg}45%{rotate:-6deg}70%{rotate:2deg}100%{rotate:-4deg}}
+.info{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:18px 20px;display:grid;gap:4px;color:#fbf3e2}
+.info .kicker{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#f0c977}
+.info h3{font-size:1.45rem;line-height:1.08;color:#fff}
+.info{text-shadow:0 1px 14px rgba(0,0,0,.5)}
+.info .meta{font-family:var(--mono);font-size:.68rem;color:rgba(251,243,226,.78)}
+.info .desc{display:none;max-width:44ch;margin:6px 0 0;font-size:.95rem;line-height:1.5;color:rgba(251,243,226,.9)}
+/* format vedette : seulement dans la mosaïque complète, et pas sur petit écran */
+@media (min-width:581px){
+  .grid:not(.filtered) .f1 .info,.grid:not(.filtered) .f2 .info{padding:26px 28px}
+  .grid:not(.filtered) .f1 .info h3,.grid:not(.filtered) .f2 .info h3{font-size:clamp(1.9rem,3.2vw,2.7rem)}
+  .grid:not(.filtered) .f1 .desc,.grid:not(.filtered) .f2 .desc{display:block}
+  .grid:not(.filtered) .f1 .ptag b,.grid:not(.filtered) .f2 .ptag b{font-size:1.6rem}
+}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.acts .btn{color:#fbf3e2;border-color:rgba(251,243,226,.45);background:rgba(18,12,6,.3);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.acts .btn:hover{border-color:#f0c977}
+.acts .btn.primary{background:#e2b04f;color:#1a1408;border-color:#e2b04f}
+@media (hover:hover){
+  .acts{max-height:0;margin-top:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),margin .5s var(--ease),opacity .35s}
+  .card:hover .acts,.card:focus-within .acts{max-height:70px;margin-top:10px;opacity:1}
+}
 .card-meta{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
-.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:18px;flex-wrap:wrap}
-.card-foot .price{font-size:1.05rem}
-.card-actions{display:flex;gap:8px}
-.thumb img.photo{object-fit:cover}
-.card-maker{font-size:.84rem;color:var(--muted)}
 .detail-maker{color:var(--muted);font-size:.9rem;margin:-4px 0 0}
 .detail-maker b{color:inherit;font-weight:600}
-.makers{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:22px;margin-top:52px}
-.maker{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
-.maker .portrait{position:relative;aspect-ratio:4/5;background:var(--surface-2);display:grid;place-items:center;overflow:hidden}
-.maker .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.maker .portrait span{font-family:var(--display);font-size:4.5rem;color:var(--raffia)}
-.maker-body{padding:18px 20px 22px;display:grid;gap:6px}
-.maker-body h3{font-size:1.4rem}
-.maker-body blockquote{margin:6px 0 4px;color:var(--muted);font-size:.95rem;line-height:1.5}
+/* artisans : fiches d'atelier cousues, photo en arche, cachet « fait main », bande de raphia tressé */
+.makers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 24px;margin-top:56px;list-style:none;padding:0}
+@media (max-width:1100px){.makers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.makers{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-24px;padding:6px 24px 18px;scroll-padding-inline:24px;scrollbar-width:none}.makers::-webkit-scrollbar{display:none}.maker{scroll-snap-align:start}}
+.maker{--tilt:0deg;position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:14px 14px 0;overflow:hidden;transform:rotate(var(--tilt));transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .3s}
+.maker:nth-child(odd){--tilt:-.7deg}.maker:nth-child(even){--tilt:.6deg}
+.maker::before{content:"";position:absolute;inset:6px 6px 16px;border:1.5px dashed color-mix(in srgb,var(--raffia) 38%,transparent);border-radius:17px;pointer-events:none}
+.maker::after{content:"";height:12px;margin:14px -14px 0;background:repeating-linear-gradient(90deg,color-mix(in srgb,var(--raffia) 85%,#000) 0 8px,var(--raffia) 8px 16px),var(--raffia);-webkit-mask:repeating-linear-gradient(0deg,#000 0 3px,rgba(0,0,0,.72) 3px 6px);mask:repeating-linear-gradient(0deg,#000 0 3px,rgba(0,0,0,.72) 3px 6px)}
+@media (hover:hover){.maker:hover{--tilt:0deg;transform:rotate(0) translateY(-6px);border-color:var(--line-strong);box-shadow:0 28px 50px -26px rgba(0,0,0,.5)}}
+.mk-top{position:relative;display:flex;justify-content:space-between;align-items:center;padding:4px 6px 12px;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.mk-top b{color:var(--raffia);font-weight:500}
+.mk-craft{border:1px solid color-mix(in srgb,var(--raffia) 45%,transparent);color:var(--raffia);border-radius:999px;padding:3px 9px;letter-spacing:.06em;text-transform:uppercase}
+.mk-photo{position:relative;margin:0;aspect-ratio:4/5;border-radius:999px 999px 14px 14px;overflow:hidden;background:var(--surface-2);display:grid;place-items:center}
+.mk-photo .ini{font-family:var(--display);font-size:5rem;color:var(--raffia)}
+.mk-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .8s var(--ease),transform 1.4s var(--ease)}
+@media (hover:hover){.mk-photo img{filter:sepia(.42) saturate(.85) contrast(1.04) brightness(.96)}.maker:hover .mk-photo img{filter:none;transform:scale(1.06)}}
+.mk-seal{position:absolute;right:6px;bottom:-4px;width:78px;height:78px;border-radius:50%;background:var(--raffia);color:var(--raffia-ink);display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(0,0,0,.55);z-index:2}
+.mk-seal svg{position:absolute;inset:0;width:100%;height:100%;animation:mkspin 14s linear infinite;animation-play-state:paused}
+.mk-seal text{font-family:var(--mono);font-size:9.2px;letter-spacing:1.6px;fill:currentColor;text-transform:uppercase}
+.mk-seal span{font-family:var(--display);font-size:1.6rem;line-height:1}
+@media (hover:hover){.maker:hover .mk-seal svg{animation-play-state:running}}
+@keyframes mkspin{to{transform:rotate(360deg)}}
+.mk-fig{position:relative}
+.mk-body{position:relative;padding:22px 6px 4px;display:grid;gap:8px;flex:1;align-content:start}
+.mk-body h3{font-size:1.55rem;line-height:1.05}
+.mk-place{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--muted);margin:0}
+.mk-place svg{width:14px;height:14px;color:var(--laterite);flex:none}
+.mk-quote{position:relative;margin:6px 0 2px;padding-left:22px;font-size:.93rem;line-height:1.5;font-style:italic;color:var(--fg)}
+.mk-quote::before{content:"“";position:absolute;left:-2px;top:-12px;font-family:var(--display);font-size:2.6rem;font-style:normal;color:var(--raffia)}
+.mk-pieces{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:10px}
+.mk-pieces button{font:inherit;font-size:.74rem;border:1px solid var(--line-strong);background:transparent;color:var(--fg);border-radius:999px;padding:5px 10px;cursor:pointer;transition:border-color .25s,background .25s,color .25s}
+.mk-pieces button:hover{border-color:var(--raffia);background:var(--raffia);color:var(--raffia-ink)}
+.mk-pieces .soon{font-size:.74rem;color:var(--muted);font-style:italic}
+/* apparition en cascade quand la section entre à l'écran */
+.makers .maker{opacity:0;translate:0 26px;transition:transform .6s var(--ease),box-shadow .6s var(--ease),border-color .3s,opacity .8s var(--ease) calc(var(--i)*90ms),translate .9s var(--ease) calc(var(--i)*90ms)}
+.makers.in .maker{opacity:1;translate:0 0}
+/* pièce désignée depuis une fiche artisan */
+.card.flash{animation:cardflash 1.8s var(--ease)}
+@keyframes cardflash{0%,100%{box-shadow:0 0 0 0 transparent}25%{box-shadow:0 0 0 4px var(--raffia)}}
 .reviews{list-style:none;padding:0;margin:52px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:22px 32px}
 .review{margin:0;border-top:1px solid var(--line-strong);padding-top:22px;display:grid;gap:14px}
 .review blockquote{margin:0;font-family:var(--display);font-size:1.3rem;line-height:1.35}
@@ -311,6 +383,23 @@ section.band{padding-block:clamp(80px,11vw,140px)}
 footer{border-top:1px solid var(--line);padding-block:48px calc(28px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.85rem;overflow:hidden}
 .wordmark{font-family:var(--display);font-size:clamp(5rem,23vw,19rem);line-height:.82;color:transparent;-webkit-text-stroke:1px var(--line-strong);letter-spacing:-.03em;margin:0 0 28px;user-select:none;white-space:nowrap}
 footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+/* fond : drap lamba liquide derrière les sections (canvas fixe, sous le contenu) */
+#bg3d{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0;transition:opacity 1.2s var(--ease)}
+#bg3d.on{opacity:1}
+/* pied de page : fond plein qui recouvre le drap, zone de jeu des objets du marché */
+footer{position:relative;isolation:isolate;background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 0%,transparent),var(--bg) 160px)}
+#ft3d{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+footer .wrap{position:relative;z-index:1}
+.ft-play{height:clamp(190px,22vw,290px);display:flex;align-items:flex-end;justify-content:center}
+.ft-hint{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-bottom:10px;pointer-events:none}
+.ft-hint::before{content:"↑ ";color:var(--raffia)}
+html.bg-hot,html.bg-hot body{cursor:pointer}
+/* mot-marque 3D : le texte garde la place, la scène three.js le remplace en fondu */
+.wm3d{position:relative}
+.wm3d .wordmark{transition:opacity .9s var(--ease)}
+.wm3d canvas{position:absolute;left:0;top:-20%;width:100%;height:140%;opacity:0;transition:opacity 1.2s var(--ease);pointer-events:none}
+.wm3d.on .wordmark{opacity:0}
+.wm3d.on canvas{opacity:1}
 .credits{margin-top:18px;font-size:.78rem}
 .credits summary{cursor:pointer;width:max-content}
 .credits ul{margin:10px 0 6px;padding-left:18px;display:grid;gap:3px}
@@ -360,6 +449,7 @@ footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </style>
 </head>
 <body>
+<canvas id="bg3d" aria-hidden="true"></canvas>
 <header class="top" id="top">
   <div class="wrap">
     <a class="brand" href="#etal" aria-label="Atelier Tanana, accueil">
@@ -429,14 +519,14 @@ footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="split">
         <div class="rv">
           <span class="eyebrow">L'atelier</span>
-          <h2 class="h2">Six savoir-faire, un seul étal.</h2>
+          <h2 class="h2">Huit savoir-faire, un seul étal.</h2>
         </div>
         <div class="rv">
           <p class="lede">Tanana veut dire « la main ». Nous réunissons des vanniers, potiers, sculpteurs et tisserandes des Hautes Terres, et nous vendons leur travail au juste prix, sans intermédiaire.</p>
           <p class="lede">Chaque pièce est signée par l'atelier qui l'a faite. Les variations de couleur, de trame ou de cuisson montrent qu'un objet est passé par des mains et non par une machine.</p>
           <dl class="facts">
             <div><dt class="num" data-count="42">42</dt><dd>artisans partenaires, payés à la commande</dd></div>
-            <div><dt class="num" data-count="6">6</dt><dd>savoir-faire, de la vannerie à la marqueterie</dd></div>
+            <div><dt class="num" data-count="8">8</dt><dd>savoir-faire, de la vannerie à la ferronnerie</dd></div>
             <div><dt class="num">1 j</dt><dd>de tressage pour une soubique de 32 cm</dd></div>
           </dl>
         </div>
@@ -446,8 +536,8 @@ footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
   <div class="marquee" aria-hidden="true">
     <div class="track">
-      <span>Vannerie</span><span>Poterie</span><span>Sculpture</span><span>Tissage</span><span>Corne</span><span>Marqueterie</span>
-      <span>Vannerie</span><span>Poterie</span><span>Sculpture</span><span>Tissage</span><span>Corne</span><span>Marqueterie</span>
+      <span>Vannerie</span><span>Poterie</span><span>Sculpture</span><span>Tissage</span><span>Corne</span><span>Marqueterie</span><span>Papier antemoro</span><span>Ferronnerie</span>
+      <span>Vannerie</span><span>Poterie</span><span>Sculpture</span><span>Tissage</span><span>Corne</span><span>Marqueterie</span><span>Papier antemoro</span><span>Ferronnerie</span>
     </div>
   </div>
 
@@ -466,13 +556,14 @@ footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <section class="band" id="mains" style="padding-top:0" hidden>
     <div class="wrap">
       <div class="section-head rv"><div><span class="eyebrow">Les mains</span><h2 class="h2">Celles et ceux qui font l'étal.</h2></div><p>Chaque pièce vient d'un atelier que nous connaissons, et l'artisan est payé à la commande.</p></div>
-      <div class="makers" id="makers"></div>
+      <ol class="makers" id="makers" data-lenis-prevent-touch></ol>
     </div>
   </section>
 
   <section class="band" id="collection" style="padding-top:0">
     <div class="wrap">
       <div class="section-head rv"><div><span class="eyebrow">Collection</span><h2 class="h2">Sur l'étal cette semaine</h2></div><p>Les pièces marquées 3D sont aussi sur l'étal : « Voir en 3D » vous y ramène, l'objet en main.</p></div>
+      <div class="filters" id="filters" role="group" aria-label="Filtrer par savoir-faire"></div>
       <div class="grid" id="grid"></div>
     </div>
   </section>
@@ -507,10 +598,12 @@ footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </main>
 
 <footer>
+  <canvas id="ft3d" aria-hidden="true"></canvas>
   <div class="wrap">
-    <p class="wordmark" aria-hidden="true">Tanana</p>
+    <div class="ft-play" id="ftPlay"><span class="ft-hint">Touchez les objets du marché</span></div>
+    <div class="wm3d" id="wm3d"><p class="wordmark" aria-hidden="true">Tanana</p><canvas id="wmCanvas" aria-hidden="true"></canvas></div>
     <div class="row"><span>Atelier Tanana · artisanat des Hautes Terres</span><span>Marque, prix et coordonnées d'exemple pour cette maquette.</span></div>
-    <details class="credits" id="credits" hidden><summary>Crédits photos</summary><ul id="creditList"></ul><p>Modèles 3D du décor : Poly Haven (CC0).</p></details>
+    <details class="credits" id="credits" hidden><summary>Crédits photos</summary><ul id="creditList"></ul><p>Modèles 3D du décor : Poly Haven (CC0) ; bibliothèque BlendSwap CC-0 de Sweet Home 3D (poules, parasols, tonneau, brouette, banc, plante, rochers) ; palmiers de Wolfram Diestel, <a href="https://artlibre.org/licence/lal/" target="_blank" rel="noopener">Licence Art Libre 1.3</a>, via Sweet Home 3D.</p></details>
   </div>
 </footer>
 
@@ -543,6 +636,8 @@ footer .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/OBJLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/MTLLoader.js"></script>
 <script>
 (function(){
 "use strict";
@@ -574,7 +669,9 @@ const ARTISANS=[
   {id:'faly',name:'Faly M.',craft:'Sculpture',village:'Ambositra',photo:'photos/artisans/faly.jpg',quote:"Un zébu demande trois jours. Le premier, je ne fais que regarder le bloc."},
   {id:'lalao',name:'Lalao N.',craft:'Tissage',village:'Soatanana',photo:'photos/artisans/lalao.jpg',quote:"Ma mère tissait déjà la soie sauvage. Les couleurs, c'est moi qui les ai changées."},
   {id:'tojo',name:'Tojo H.',craft:'Corne',village:'Antsirabe',photo:'photos/artisans/tojo.jpg',quote:"La corne se chauffe, se presse, puis se polit longtemps. C'est le polissage qui fait le prix."},
-  {id:'hery',name:'Hery F.',craft:'Marqueterie',village:'Ambositra',photo:'photos/artisans/hery.jpg',quote:"Chaque losange est coupé à la main. S'il en manque un, tout le motif le dit."}
+  {id:'hery',name:'Hery F.',craft:'Marqueterie',village:'Ambositra',photo:'photos/artisans/hery.jpg',quote:"Chaque losange est coupé à la main. S'il en manque un, tout le motif le dit."},
+  {id:'nivo',name:'Nivo T.',craft:'Papier antemoro',village:'Ambalavao',photo:'photos/artisans/nivo.jpg',quote:"On étale la pâte d'écorce, puis on pose les fleurs une à une avant que le soleil la sèche."},
+  {id:'mamy',name:'Mamy R.',craft:'Ferronnerie',village:'Antsirabe',photo:'photos/artisans/mamy.jpg',quote:"Le métal vient de vieux outils. Ce qu'on avait jeté repart en lanterne ou en crochet."}
 ];
 const REVIEWS=[
   {name:'Mialy',city:'Antananarivo',product:'soubique',text:"Arrivée en trois jours, bien emballée. Elle sert au marché tous les samedis depuis."},
@@ -597,7 +694,9 @@ const PHOTO_CREDITS=[
   {file:'artisans/faly.jpg',title:"Sculpture en bois à Madagascar",artist:"Fitax212",license:'CC BY-SA 4.0',url:'https://commons.wikimedia.org/wiki/File:Sculpture_en_bois_%C3%A0_Madagascar.jpg'},
   {file:'artisans/lalao.jpg',title:"Chaîne Landy MPMF24",artist:"MPMF24",license:'CC BY-SA 4.0',url:'https://commons.wikimedia.org/wiki/File:Cha%C3%AEne_Landy_MPMF24.jpg'},
   {file:'artisans/tojo.jpg',title:"Cornes de zébu prêtes à être travaillées",artist:"HoneyGaLe",license:'CC BY-SA 3.0',url:'https://commons.wikimedia.org/wiki/File:Cornes_de_z%C3%A9bu_pr%C3%AAtes_%C3%A0_%C3%AAtre_travaill%C3%A9es.jpg'},
-  {file:'artisans/hery.jpg',title:"Hand inspecting wood shavings in workshop",artist:"Shixart1985",license:'CC BY 2.0',url:'https://commons.wikimedia.org/wiki/File:Hand_inspecting_wood_shavings_in_workshop_during_afternoon_woodworking_session_for_quality_and_consistency_undefined.jpg'}
+  {file:'artisans/hery.jpg',title:"Hand inspecting wood shavings in workshop",artist:"Shixart1985",license:'CC BY 2.0',url:'https://commons.wikimedia.org/wiki/File:Hand_inspecting_wood_shavings_in_workshop_during_afternoon_woodworking_session_for_quality_and_consistency_undefined.jpg'},
+  {file:'artisans/nivo.jpg',title:"Papier Antaimoro 024",artist:"Tojonirina Jacky",license:'CC BY-SA 4.0',url:'https://commons.wikimedia.org/wiki/File:Papier_Antaimoro_024.jpg'},
+  {file:'artisans/mamy.jpg',title:"Le travail du fer à Madagascar 6",artist:"Dalbergiaada",license:'CC BY-SA 4.0',url:'https://commons.wikimedia.org/wiki/File:Le_travail_du_fer_%C3%A0_Madagascar_6.jpg'}
 ];
 /* frais de livraison par ville, en Ar (0 = gratuit) ; une ville absente reste « à confirmer » */
 const DELIVERY={
@@ -726,36 +825,82 @@ $('copyPhone').addEventListener('click',()=>{
 
 /* ---------- collection grid ---------- */
 function goTo3D(id){scrollToEl($('etal'));setTimeout(()=>{if(window.__focusProduct)window.__focusProduct(id);},reduced?0:(lenis?900:500));}
+const B3D='<span class="b3d" title="Aussi sur l\'étal en 3D"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>3D</span>';
+/* deux pièces vedettes en grand format dans la mosaïque (vue « Tout ») */
+const FEATURED={soubique:'f1',cabas:'f2'};
+let gridCat='';
 function renderGrid(){
-  const g=$('grid');g.innerHTML='';
+  const g=$('grid');g.innerHTML='';g.classList.toggle('filtered',!!gridCat);
   PRODUCTS.forEach((p,i)=>{
-    const c=document.createElement('article');c.className='card';
+    const c=document.createElement('article');c.className='card '+(FEATURED[p.id]||'');c.id='p-'+p.id;c.dataset.cat=p.cat;
+    c.hidden=!!gridCat&&p.cat!==gridCat;
     const t=thumbs[p.id],m=makerOf(p),in3d=STALL.includes(p.id);
-    /* photo manquante : on retombe sur l'aperçu 3D, sinon sur le nom du savoir-faire */
-    const imgs=(t?'':`<span class="ph">${p.cat}</span>`)+(p.photo?`<img class="a photo" src="${esc(p.photo)}" alt="${p.name}" loading="lazy" onerror="const b=this.nextElementSibling;if(b)b.className='a';this.remove()">${t?`<img class="b" src="${t.a}" alt="">`:''}`
-      :t?`<img class="a" src="${t.a}" alt="${p.name}"><img class="b" src="${t.b}" alt="">`:'');
-    c.innerHTML=`<span class="glare"></span><div class="thumb"><span class="tag">${String(i+1).padStart(2,'0')} · ${p.cat}${in3d?' · 3D':''}</span>${imgs}</div>
-    <div class="card-body"><h3>${p.name}</h3><span class="card-meta">${p.size} · ${p.stock}</span>${m?`<span class="card-maker">Fait par ${esc(m.name)}, ${esc(m.village)}</span>`:''}
-    <div class="card-foot"><span class="price">${fmt(p.price)}</span><div class="card-actions">${in3d?'<button class="btn small" data-act="view">Voir en 3D</button>':''}<button class="btn small primary" data-act="add" aria-label="Ajouter ${p.name} au panier">Ajouter</button></div></div></div>`;
+    /* aperçu 3D (deux angles, fondu au survol), ou le nom du savoir-faire tant qu'il n'est pas rendu */
+    const view3d=t?`<img class="a" src="${t.a}" alt="${p.name}"><img class="b" src="${t.b}" alt="">`:`<span class="ph">${p.cat}</span>`;
+    const media=p.photo?`<span class="ph">${p.cat}</span><img class="photo" src="${esc(p.photo)}" alt="${p.name}" loading="lazy">`:view3d;
+    c.innerHTML=`<span class="glare"></span><div class="thumb${!p.photo&&t?' swap':''}">${media}</div>${in3d?B3D:''}
+    <div class="ptag-w"><div class="ptag"><span>N° ${String(i+1).padStart(2,'0')}</span><b>${new Intl.NumberFormat('fr-FR').format(p.price)}</b><span>Ariary</span></div></div>
+    <div class="info"><span class="kicker">${p.cat}${m?' · '+esc(m.name):''}</span><h3>${p.name}</h3><span class="meta">${p.size} · ${p.stock}</span><p class="desc">${p.desc}</p>
+      <div class="acts">${in3d?'<button class="btn small" data-act="view">Voir en 3D</button>':''}<button class="btn small primary" data-act="add" aria-label="Ajouter ${p.name} au panier">Ajouter au panier</button></div></div>`;
+    const ph=c.querySelector('img.photo');
+    if(ph){
+      const ok=()=>ph.classList.add('ok');ph.addEventListener('load',ok);if(ph.complete&&ph.naturalWidth)ok();
+      /* photo manquante : on retombe sur l'aperçu 3D s'il existe, sinon le fond tressé reste */
+      ph.addEventListener('error',()=>{const th=ph.parentNode;ph.remove();if(t){th.querySelector('.ph').remove();th.insertAdjacentHTML('beforeend',view3d);th.classList.add('swap');}});
+    }
     c.querySelector('[data-act="add"]').addEventListener('click',()=>addToCart(p.id));
     if(in3d)c.querySelector('[data-act="view"]').addEventListener('click',()=>goTo3D(p.id));
     if(fine&&!reduced){
-      c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();const x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.setProperty('--ry',((x-.5)*7).toFixed(2)+'deg');c.style.setProperty('--rx',((.5-y)*6).toFixed(2)+'deg');c.style.setProperty('--gx',(x*100)+'%');c.style.setProperty('--gy',(y*100)+'%');});
+      c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();const x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height,k=FEATURED[p.id]?.5:1;c.style.setProperty('--ry',((x-.5)*6*k).toFixed(2)+'deg');c.style.setProperty('--rx',((.5-y)*5*k).toFixed(2)+'deg');c.style.setProperty('--gx',(x*100)+'%');c.style.setProperty('--gy',(y*100)+'%');});
       c.addEventListener('pointerleave',()=>{c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg');});
     }
     g.appendChild(c);
   });
+}
+/* filtres par savoir-faire : pastille glissante, tuiles qui s'effacent puis se réordonnent */
+function placeFilterPill(){const f=$('filters'),on=f.querySelector('[aria-pressed="true"]'),pill=f.querySelector('.pill');if(on&&pill){pill.style.left=on.offsetLeft+'px';pill.style.width=on.offsetWidth+'px';}}
+function setCat(cat){
+  if(cat===gridCat)return;gridCat=cat;
+  $('filters').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.cat===cat)));placeFilterPill();
+  const g=$('grid'),cards=[...g.children];
+  cards.forEach(c=>c.classList.add('out'));
+  setTimeout(()=>{
+    g.classList.toggle('filtered',!!cat);cards.forEach(c=>{c.hidden=!!cat&&c.dataset.cat!==cat;});
+    requestAnimationFrame(()=>requestAnimationFrame(()=>cards.forEach((c,i)=>setTimeout(()=>c.classList.remove('out'),reduced?0:i*35))));
+  },reduced?0:280);
+}
+{
+  const cats=[...new Set(PRODUCTS.map(p=>p.cat))];
+  $('filters').innerHTML='<span class="pill" aria-hidden="true"></span>'+[['','Tout',PRODUCTS.length],...cats.map(c=>[c,c,PRODUCTS.filter(p=>p.cat===c).length])]
+    .map(([v,l,n])=>`<button type="button" data-cat="${esc(v)}" aria-pressed="${v===gridCat}">${esc(l)}<sup>${n}</sup></button>`).join('');
+  $('filters').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setCat(b.dataset.cat);});
+  placeFilterPill();addEventListener('resize',placeFilterPill);
+  if(document.fonts)document.fonts.ready.then(placeFilterPill);
 }
 renderCart();renderGrid();
 
 /* ---------- artisans, avis, données Google ---------- */
 if(ARTISANS.length){
   $('mains').hidden=false;$('navMains').hidden=false;
-  $('makers').innerHTML=ARTISANS.map(a=>{
-    const pieces=PRODUCTS.filter(p=>p.maker===a.id).map(p=>p.name);
-    return `<article class="maker"><div class="portrait"><span aria-hidden="true">${esc(a.name.charAt(0))}</span>${a.photo?`<img src="${esc(a.photo)}" alt="L'atelier de ${esc(a.name)}" loading="lazy" onerror="this.remove()">`:''}</div>
-    <div class="maker-body"><span class="card-meta">${esc(a.craft)} · ${esc(a.village)}</span><h3>${esc(a.name)}</h3>${a.quote?`<blockquote>« ${esc(a.quote)} »</blockquote>`:''}${pieces.length?`<span class="card-meta">Sur l'étal : ${esc(pieces.join(', '))}</span>`:''}</div></article>`;
+  const total=String(ARTISANS.length).padStart(2,'0');
+  $('makers').innerHTML=ARTISANS.map((a,i)=>{
+    const pieces=PRODUCTS.filter(p=>p.maker===a.id);
+    const ring=`Fait main · ${a.village} · `;
+    return `<li class="maker" style="--i:${i}">
+    <div class="mk-top"><span>N° <b>${String(i+1).padStart(2,'0')}</b> / ${total}</span><span class="mk-craft">${esc(a.craft)}</span></div>
+    <div class="mk-fig"><figure class="mk-photo"><span class="ini" aria-hidden="true">${esc(a.name.charAt(0))}</span>${a.photo?`<img src="${esc(a.photo)}" alt="Les mains à l'ouvrage, atelier de ${esc(a.name)}" loading="lazy" onerror="this.remove()">`:''}</figure>
+      <span class="mk-seal" aria-hidden="true"><svg viewBox="0 0 78 78"><defs><path id="mkr${i}" d="M39 39m-29 0a29 29 0 1 1 58 0a29 29 0 1 1-58 0"/></defs><text><textPath href="#mkr${i}" textLength="180">${esc(ring)}</textPath></text></svg><span>${esc(a.name.charAt(0))}</span></span></div>
+    <div class="mk-body"><h3>${esc(a.name)}</h3>
+      <p class="mk-place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>${esc(a.village)}, Hautes Terres</p>
+      ${a.quote?`<blockquote class="mk-quote">${esc(a.quote)}</blockquote>`:''}
+      <div class="mk-pieces">${pieces.length?pieces.map(p=>`<button type="button" data-pid="${p.id}">${esc(p.name)} →</button>`).join(''):'<span class="soon">Ses pièces arrivent bientôt sur l\'étal.</span>'}</div></div>
+    </li>`;
   }).join('');
+  /* une pastille mène à la pièce dans la Collection, qui s'illumine brièvement */
+  $('makers').addEventListener('click',e=>{const b=e.target.closest('[data-pid]');if(!b)return;const card=$('p-'+b.dataset.pid);if(!card)return;
+    if(card.hidden)setCat('');
+    scrollToEl(card);setTimeout(()=>{card.classList.remove('flash');void card.offsetWidth;card.classList.add('flash');},reduced?0:900);});
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){$('makers').classList.add('in');o.disconnect();}},{threshold:.15}).observe($('makers'));
 }
 if(REVIEWS.length){
   $('avis').hidden=false;
@@ -786,6 +931,278 @@ if(DEMO){
 /* ---------- mood pill ---------- */
 function placePill(){const on=document.querySelector('.mood button[aria-pressed="true"]');const pill=document.querySelector('.mood .pill');if(!on||!pill)return;pill.style.left=on.offsetLeft+'px';pill.style.width=on.offsetWidth+'px';}
 placePill();document.fonts&&document.fonts.ready.then(placePill);
+
+/* ---------- footer : mot-marque 3D fluide ----------
+   Le mot est dessiné en Gloock dans une texture, puis empilé en tranches pour former un relief.
+   Toutes les tranches ondulent ensemble (soie au vent) ; le pointeur crée une vaguelette et incline le mot. */
+(function wordmark3D(){
+  const wrap=$('wm3d'),cv=$('wmCanvas');
+  if(!wrap||!window.THREE)return;
+  let r;try{r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});}catch(e){return;}
+  const light=!fine||(navigator.hardwareConcurrency||8)<=4;
+  r.setPixelRatio(Math.min(devicePixelRatio||1,light?1.25:2));
+  const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(30,1,.1,50),grp=new THREE.Group();sc.add(grp);
+  const SL=light?12:24,DEPTH=.15;
+  const U={uTex:{value:null},uT:{value:0},uM:{value:new THREE.Vector2(.5,.5)},uH:{value:0},uIn:{value:0},
+    uFront:{value:new THREE.Color()},uSide:{value:new THREE.Color()},uLight:{value:new THREE.Color()}};
+  const paint=()=>{const c=new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue('--raffia').trim()||'#e2b04f');
+    U.uFront.value.copy(c);U.uSide.value.copy(c).multiplyScalar(.42);U.uLight.value.copy(c).lerp(new THREE.Color('#fff4d6'),.6);};
+  const VS=`uniform float uT,uH,uIn,uZ;uniform vec2 uM;varying vec2 vUv;varying float vW;
+    void main(){vUv=uv;vec3 p=position;
+      float w=sin(p.x*1.6+uT*1.1)*.07+sin(p.x*3.1-uT*1.7+p.y*2.)*.035;
+      float d=distance(uv*vec2(4.,1.),uM*vec2(4.,1.));
+      w+=exp(-d*d*5.)*uH*.13*sin(d*13.-uT*6.);
+      w*=mix(3.,1.,uIn);
+      p.z+=w+uZ*uIn;p.y+=sin(p.x*1.2+uT*.8)*.03;
+      vW=w;gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.);}`;
+  const FS=`uniform sampler2D uTex;uniform vec3 uFront,uSide,uLight;uniform float uS,uT,uH;uniform vec2 uM;varying vec2 vUv;varying float vW;
+    void main(){if(texture2D(uTex,vUv).a<.5)discard;
+      vec3 c;
+      if(uS<.001){
+        float s=fract(vUv.x*.5-uT*.06);float band=smoothstep(0.,.08,s)*smoothstep(.22,.08,s);
+        c=mix(uFront,uLight,band*.75+clamp(vW*2.5,0.,.3));
+        c=mix(c,uLight,exp(-pow(distance(vUv*vec2(4.,1.),uM*vec2(4.,1.)),2.)*6.)*uH*.45);
+      }else c=mix(uSide,uSide*.45,uS);
+      gl_FragColor=vec4(c,1.);}`;
+  const tc=document.createElement('canvas'),g=tc.getContext('2d');let aspect=4,geo=null;const meshes=[];
+  function draw(){
+    const fs=360,font=`${fs}px Gloock, Georgia, serif`;g.font=font;
+    tc.width=Math.ceil(g.measureText('Tanana').width+fs*.2);tc.height=Math.ceil(fs*1.15);
+    g.font=font;g.fillStyle='#fff';g.textAlign='center';g.textBaseline='middle';g.fillText('Tanana',tc.width/2,tc.height*.54);
+    aspect=tc.width/tc.height;
+    if(U.uTex.value)U.uTex.value.dispose();U.uTex.value=new THREE.CanvasTexture(tc);
+    meshes.forEach(m=>{grp.remove(m);m.material.dispose();});meshes.length=0;if(geo)geo.dispose();
+    geo=new THREE.PlaneGeometry(aspect,1,light?120:220,light?24:40);
+    for(let i=0;i<SL;i++){const s=i/(SL-1);
+      const m=new THREE.Mesh(geo,new THREE.ShaderMaterial({uniforms:{...U,uZ:{value:-s*DEPTH},uS:{value:s}},vertexShader:VS,fragmentShader:FS,side:THREE.DoubleSide}));
+      m.renderOrder=SL-i;grp.add(m);meshes.push(m);}
+    fit();
+  }
+  function fit(){
+    const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;
+    r.setSize(w,h,false);cam.aspect=w/h;
+    const t=Math.tan(cam.fov*Math.PI/360);
+    cam.position.set(0,0,Math.max((aspect*.96/2)/(t*cam.aspect),.55/t));cam.lookAt(0,0,0);cam.updateProjectionMatrix();
+  }
+  /* pointeur : la vaguelette suit le point visé sur le mot, l'inclinaison suit la position */
+  const ray=new THREE.Raycaster(),nd=new THREE.Vector2(),mT=new THREE.Vector2(.5,.5);let hov=0,tx=0,ty=0,rx=0,ry=0;
+  wrap.addEventListener('pointermove',e=>{const b=cv.getBoundingClientRect();nd.set((e.clientX-b.left)/b.width*2-1,-(e.clientY-b.top)/b.height*2+1);
+    tx=nd.x;ty=nd.y;ray.setFromCamera(nd,cam);const hit=meshes[0]&&ray.intersectObject(meshes[0])[0];hov=hit?1:0;if(hit)mT.copy(hit.uv);});
+  wrap.addEventListener('pointerleave',()=>{hov=0;tx=ty=0;});
+  let vis=false,raf=0,last=0,intro=0;
+  function frame(now){
+    raf=0;const dt=Math.min(.05,(now-(last||now))/1000);last=now;
+    intro=reduced?1:Math.min(1,intro+dt/1.8);U.uIn.value=1-Math.pow(1-intro,3);
+    U.uT.value=reduced?2:now/1000;
+    U.uH.value+=(hov-U.uH.value)*Math.min(1,dt*4);U.uM.value.lerp(mT,Math.min(1,dt*8));
+    rx+=(ty*.14-rx)*Math.min(1,dt*3);ry+=(tx*.24-ry)*Math.min(1,dt*3);grp.rotation.set(-rx,ry,0);
+    r.render(sc,cam);
+    if(vis&&!reduced)raf=requestAnimationFrame(frame);
+  }
+  const kick=()=>{if(!raf){last=0;raf=requestAnimationFrame(frame);}};
+  new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis)kick();},{rootMargin:'80px'}).observe(wrap);
+  new ResizeObserver(()=>{fit();kick();}).observe(cv);
+  matchMedia('(prefers-color-scheme: light)').addEventListener('change',()=>{paint();kick();});
+  const ready=document.fonts?document.fonts.load('360px Gloock').catch(()=>{}):Promise.resolve();
+  ready.then(()=>{paint();draw();wrap.classList.add('on');kick();});
+})();
+
+/* ---------- fond : drap lamba liquide ----------
+   Un seul quad plein écran. Le relief du drap est calculé dans le shader (somme d'ondes) ;
+   ses pentes éclairent la soie et courbent les rayures. Le pointeur soulève le tissu,
+   un clic dans une zone vide y lance une onde, la vitesse de défilement agite les plis. */
+(function lambaCloth(){
+  const cv=$('bg3d');if(!cv||!window.THREE)return;
+  let r;try{r=new THREE.WebGLRenderer({canvas:cv,antialias:false});}catch(e){return;}
+  const light=!fine||(navigator.hardwareConcurrency||8)<=4;
+  r.setPixelRatio(Math.min(devicePixelRatio||1,light?1:1.5));
+  const sc=new THREE.Scene(),cam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+  const NR=6,rip=Array.from({length:NR},()=>new THREE.Vector4(0,0,-99,0));let ri=0;
+  /* camaïeu de notre vert principal (#1f4038), du vert sauge au vert presque noir */
+  const COLS=['#6f9a84','#4f7a65','#3a6150','#2a4d40','#1f4038','#132a22'].map(c=>new THREE.Color(c));
+  const U={uT:{value:0},uRes:{value:new THREE.Vector2(1,1)},uM:{value:new THREE.Vector2(-9,-9)},uMs:{value:0},uRip:{value:rip},
+    uScroll:{value:0},uAgit:{value:0},uBg:{value:new THREE.Color()},uAmt:{value:.2},uCols:{value:COLS}};
+  const FS=`precision highp float;
+    uniform float uT,uMs,uScroll,uAgit,uAmt;uniform vec2 uRes,uM;uniform vec4 uRip[${NR}];uniform vec3 uBg,uCols[6];
+    float hash(float n){return fract(sin(n*12.9898)*43758.5453);}
+    vec3 pick(float i){vec3 c=uCols[0];for(int k=1;k<6;k++)if(float(k)==i)c=uCols[k];return c;}
+    float H(vec2 p){
+      float a=1.+uAgit;
+      float h=.050*sin(p.x*5.2+p.y*.9+uT*.55+uScroll*1.3)*a+.032*sin(p.x*9.1-p.y*1.7-uT*.8+uScroll*.7)*a
+             +.020*sin(p.x*15.3+p.y*3.1+uT*1.2)+.026*sin(p.y*3.4+p.x*1.3-uT*.4-uScroll*1.1);
+      vec2 d=p-uM;h+=.07*uMs*exp(-dot(d,d)*22.);
+      for(int i=0;i<${NR};i++){vec4 R=uRip[i];float age=uT-R.z;if(age<0.||age>3.5)continue;
+        float dist=length(p-R.xy),f=dist-age*.55;h+=.045*R.w*exp(-age*1.2)*exp(-f*f*55.)*sin(f*46.);}
+      return h;}
+    void main(){
+      vec2 p=gl_FragCoord.xy/uRes.y;float e=1.5/uRes.y;
+      float h=H(p),hx=H(p+vec2(e,0.)),hy=H(p+vec2(0.,e));
+      vec3 n=normalize(vec3(-(hx-h)/e*.9,-(hy-h)/e*.9,1.));
+      /* rayures du lamba, de largeurs variées, courbées par les plis */
+      float u=(p.x*.94+p.y*.34)*9.+h*3.2+uScroll*.1;
+      float band=floor(u),f=fract(u),w=.25+.5*hash(band);
+      vec3 c=f<w?pick(mod(band,6.)):pick(mod(band*5.+2.,6.));
+      float pin=smoothstep(.035,0.,abs(f-w))+smoothstep(.03,0.,f);c=mix(c,vec3(.64,.78,.69),pin*.55);
+      c*=.94+.08*sin(gl_FragCoord.x*1.7)*sin(gl_FragCoord.y*1.7);
+      vec3 L=normalize(vec3(-.4,.6,.7));
+      float diff=.7+.4*dot(n,L),spec=pow(max(0.,dot(reflect(-L,n),vec3(0.,0.,1.))),22.)*.4;
+      gl_FragColor=vec4(mix(uBg,c*diff+spec,uAmt),1.);
+    }`;
+  sc.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),new THREE.ShaderMaterial({uniforms:U,vertexShader:'void main(){gl_Position=vec4(position.xy,0.,1.);}',fragmentShader:FS,depthTest:false})));
+  const paint=()=>{const s=getComputedStyle(document.documentElement),bg=s.getPropertyValue('--bg').trim()||'#edefe7';
+    U.uBg.value.set(bg);U.uAmt.value=U.uBg.value.r+U.uBg.value.g+U.uBg.value.b>1.5?.17:.3;dirty=true;};
+  let W=0,H=0,dirty=true;
+  const fit=()=>{W=innerWidth;H=innerHeight;r.setSize(W,H,false);U.uRes.value.set(W*r.getPixelRatio(),H*r.getPixelRatio());dirty=true;};
+  /* pointeur : le tissu se soulève partout ; un clic dans une zone vide lance une onde */
+  const CONTENT='a,button,input,textarea,select,label,summary,p,h1,h2,h3,h4,li,dt,dd,img,figure,blockquote,.card,.maker,.contact,.filters,.cart,.toast,.stage,header,footer';
+  let mx=-9,my=-9,mOn=0;
+  addEventListener('pointermove',e=>{mx=e.clientX/H;my=(H-e.clientY)/H;mOn=1;},{passive:true});
+  document.documentElement.addEventListener('pointerleave',()=>{mOn=0;});
+  document.addEventListener('click',e=>{
+    if(e.target.closest&&e.target.closest(CONTENT))return;
+    rip[ri].set(e.clientX/H,(H-e.clientY)/H,U.uT.value,1);ri=(ri+1)%NR;dirty=true;
+  });
+  const stage=$('etal');let sy=scrollY,ss=scrollY/innerHeight,agit=0,last=0;
+  function frame(now){
+    requestAnimationFrame(frame);
+    if(document.hidden)return;
+    const dt=Math.min(.05,(now-(last||now))/1000);last=now;
+    /* rien à dessiner tant que la scène d'accueil couvre l'écran */
+    if(stage&&stage.getBoundingClientRect().bottom>=H-2){return;}
+    const v=Math.abs(scrollY-sy)/Math.max(dt,.001)/H;sy=scrollY;
+    agit+=(Math.min(1.2,v*.5)-agit)*Math.min(1,dt*3);ss+=(scrollY/H-ss)*Math.min(1,dt*4);
+    U.uM.value.lerp(new THREE.Vector2(mx,my),Math.min(1,dt*6));U.uMs.value+=(mOn-U.uMs.value)*Math.min(1,dt*3);
+    if(!reduced){U.uT.value+=dt;U.uAgit.value=agit;U.uScroll.value=ss;}
+    else if(!dirty)return;
+    r.render(sc,cam);dirty=false;
+  }
+  addEventListener('resize',fit);
+  matchMedia('(prefers-color-scheme: light)').addEventListener('change',paint);
+  fit();paint();requestAnimationFrame(frame);cv.classList.add('on');
+})();
+
+/* ---------- pied de page : objets du marché à toucher ----------
+   Mini-soubique, jarre, corne, raphia, litchi, cocon, vanille, posés dans la zone de jeu du pied de page.
+   Survol : grossit et s'illumine ; clic : bond, rotation, confettis, voisins repoussés et une info. */
+(function footerObjects(){
+  const ft=document.querySelector('footer'),cv=$('ft3d'),play=$('ftPlay');if(!ft||!cv||!play||!window.THREE)return;
+  let r;try{r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});}catch(e){return;}
+  const light=!fine||(navigator.hardwareConcurrency||8)<=4;
+  r.setPixelRatio(Math.min(devicePixelRatio||1,light?1.25:2));
+  const sc=new THREE.Scene(),cam=new THREE.OrthographicCamera(0,1,0,-1,.1,4000);cam.position.z=2000;sc.add(cam);
+  sc.add(new THREE.HemisphereLight(0xfff2dc,0x3a2a20,.85));
+  const sun=new THREE.DirectionalLight(0xffffff,1.1);sun.position.set(-.6,.9,1);cam.add(sun);
+  const M=(c,o={})=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.62,metalness:.04},o));
+  const lathe=pts=>new THREE.LatheGeometry(pts.map(p=>new THREE.Vector2(p[0],p[1])),28);
+  /* chaque objet : géométrie à l'échelle 1 (≈ 1 unité de haut), matière, et une info montrée au clic */
+  const KINDS=[
+    {geo:()=>lathe([[0,-.5],[.5,-.5],[.66,-.38],[.74,-.08],[.74,.2],[.72,.3]]),mat:()=>M(0xd6b26a,{roughness:.9,side:THREE.DoubleSide}),
+      extra:m=>{const h=new THREE.Mesh(new THREE.TorusGeometry(.62,.05,8,28,Math.PI),m.material);h.position.y=.3;m.add(h);},
+      fact:"Vannerie · une soubique de 32 cm demande une journée entière de tressage."},
+    {geo:()=>lathe([[0,-.5],[.3,-.5],[.42,-.36],[.52,-.06],[.5,.18],[.32,.38],[.2,.44],[.22,.5],[.17,.52]]),mat:()=>M(0xb8603a,{roughness:.85,side:THREE.DoubleSide}),
+      fact:"Poterie · à Antsirabe, les jarres sont cuites au feu de bois, une fois par semaine."},
+    {geo:()=>{const g=new THREE.TorusGeometry(.5,.13,10,28,Math.PI*.9);const p=g.attributes.position;
+      for(let i=0;i<p.count;i++){const a=Math.atan2(p.getY(i),p.getX(i));const k=.35+.65*(1-Math.max(0,a)/(Math.PI*.9));p.setZ(i,p.getZ(i)*k);}g.computeVertexNormals();return g;},
+      mat:()=>M(0x3a2414,{roughness:.28,metalness:.15}),fact:"Corne · la corne de zébu est chauffée, pressée, puis polie longuement jusqu'au reflet ambré."},
+    {geo:()=>new THREE.TorusKnotGeometry(.32,.07,90,10,2,3),mat:()=>M(0xc99a4a,{roughness:.95}),
+      fact:"Raphia · la fibre vient des jeunes palmes, coupées avant qu'elles ne s'ouvrent."},
+    {geo:()=>{const g=new THREE.IcosahedronGeometry(.42,2);const p=g.attributes.position,v=new THREE.Vector3();
+      for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);v.multiplyScalar(1+Math.sin(v.x*28)*Math.sin(v.y*26)*Math.sin(v.z*24)*.05);p.setXYZ(i,v.x,v.y,v.z);}g.computeVertexNormals();return g;},
+      mat:()=>M(0xb8333a,{roughness:.55,flatShading:true}),fact:"Litchi · Madagascar est l'un des premiers exportateurs de litchis vers l'Europe."},
+    {geo:()=>new THREE.CapsuleGeometry(.24,.42,8,18),mat:()=>M(0xefe3c4,{roughness:.9}),
+      fact:"Soie sauvage · les cocons de landibe sont récoltés dans les forêts de tapia."},
+    {geo:()=>new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(-.55,-.2,0),new THREE.Vector3(-.2,.05,.05),new THREE.Vector3(.2,.12,-.05),new THREE.Vector3(.55,.32,0)]),40,.045,8),
+      mat:()=>M(0x3b2a1c,{roughness:.5}),fact:"Vanille · Madagascar produit la plus grande partie de la vanille mondiale."}
+  ];
+  const geos=KINDS.map(k=>k.geo()),mats=KINDS.map(k=>k.mat());
+  let W=1,Hf=1,objs=[],dirty=true;
+  /* zones vides du pied de page : la zone de jeu, et les côtés sur grand écran */
+  function layout(){
+    W=ft.clientWidth;Hf=ft.offsetHeight;r.setSize(W,Hf,false);
+    cam.left=0;cam.right=W;cam.top=0;cam.bottom=-Hf;cam.updateProjectionMatrix();
+    objs.forEach(o=>sc.remove(o.mesh));objs=[];
+    const fr=ft.getBoundingClientRect(),pr=play.getBoundingClientRect(),gx=ft.querySelector('.wrap').getBoundingClientRect().left-fr.left;
+    const zones=[{x0:0,x1:W,y0:pr.top-fr.top,y1:pr.bottom-fr.top}];
+    if(gx>120){zones.push({x0:0,x1:gx,y0:pr.bottom-fr.top,y1:Hf,side:1},{x0:W-gx,x1:W,y0:pr.bottom-fr.top,y1:Hf,side:1});}
+    const rnd=rng(77),placed=[],cap=light?6:12;
+    for(const z of zones){
+      const zw=z.x1-z.x0,zh=z.y1-z.y0,size=Math.max(36,Math.min(z.side?zw*.45:zh*.38,light?70:96));
+      if(zh<size*1.7||zw<size*1.7)continue;
+      const n=Math.min(z.side?Math.floor(zh/260):Math.floor(zw/170),z.side?2:10);
+      for(let i=0;i<n&&placed.length<cap;i++){
+        for(let tries=0;tries<14;tries++){
+          const x=z.x0+size*.85+rnd()*(zw-size*1.7),y=z.y0+size*.85+rnd()*Math.max(1,zh-size*1.7);
+          if(placed.some(p=>Math.hypot(p.x-x,p.y-y)<(p.size+size)*.9))continue;
+          placed.push({x,y,size});break;
+        }
+      }
+    }
+    placed.forEach((p,i)=>{
+      const k=i%KINDS.length,mesh=new THREE.Mesh(geos[k],mats[k].clone());
+      if(KINDS[k].extra)KINDS[k].extra(mesh);
+      mesh.rotation.set(rnd()*6,rnd()*6,rnd()*6);sc.add(mesh);
+      objs.push({mesh,k,x:p.x,y:p.y,size:p.size,ox:0,oy:0,vx:0,vy:0,s:0,punch:0,spin:new THREE.Vector3(),
+        rs:new THREE.Vector3((rnd()-.5)*.5,(rnd()-.5)*.6,(rnd()-.5)*.4),ph:rnd()*6.28,glow:0});
+    });
+    dirty=true;
+  }
+  /* confettis : petite gerbe de points aux couleurs du site */
+  const bursts=[],CONF=[0xe2b04f,0xb8603a,0x1f4038,0xefe3c4,0xb8333a];
+  function burst(x,y){
+    const n=light?18:34,pos=new Float32Array(n*3),col=new Float32Array(n*3),vel=[];
+    for(let i=0;i<n;i++){pos.set([x,-y,40],i*3);const c=new THREE.Color(CONF[i%CONF.length]);col.set([c.r,c.g,c.b],i*3);
+      const a=Math.random()*6.28,s=160+Math.random()*320;vel.push(Math.cos(a)*s,Math.sin(a)*s+120);}
+    const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));g.setAttribute('color',new THREE.BufferAttribute(col,3));
+    const p=new THREE.Points(g,new THREE.PointsMaterial({size:7*Math.min(devicePixelRatio||1,2),vertexColors:true,transparent:true,sizeAttenuation:false}));
+    sc.add(p);bursts.push({p,vel,t:0});
+  }
+  /* pointeur : seulement sur la zone de jeu et les côtés, jamais sur le texte ou les liens */
+  const CONTENT='a,button,summary,details,p,li,.row,.wm3d';
+  const ray=new THREE.Raycaster(),nd=new THREE.Vector2();let px=-1e4,py=-1e4,hot=null;
+  function pick(cx,cy){
+    if(!objs.length)return null;const el=document.elementFromPoint(cx,cy);if(!el||el.closest(CONTENT))return null;
+    const fr=ft.getBoundingClientRect(),x=cx-fr.left,y=cy-fr.top;
+    nd.set(x/W*2-1,-y/Hf*2+1);ray.setFromCamera(nd,cam);
+    const hit=ray.intersectObjects(objs.map(o=>o.mesh),true)[0];if(!hit)return null;
+    let m=hit.object;while(m.parent&&m.parent!==sc)m=m.parent;return objs.find(o=>o.mesh===m)||null;
+  }
+  ft.addEventListener('pointermove',e=>{const fr=ft.getBoundingClientRect();px=e.clientX-fr.left;py=e.clientY-fr.top;
+    const h=fine?pick(e.clientX,e.clientY):null;if(h!==hot){hot=h;document.documentElement.classList.toggle('bg-hot',!!h);}},{passive:true});
+  ft.addEventListener('pointerleave',()=>{px=py=-1e4;if(hot){hot=null;document.documentElement.classList.remove('bg-hot');}});
+  ft.addEventListener('click',e=>{
+    const o=pick(e.clientX,e.clientY);if(!o)return;
+    o.vy-=520;o.punch=.45;o.glow=1;o.spin.set((Math.random()-.5)*14,(Math.random()-.5)*18,(Math.random()-.5)*10);
+    burst(o.x+o.ox,o.y+o.oy);
+    for(const n of objs)if(n!==o){const dx=n.x+n.ox-o.x,dy=n.y+n.oy-o.y,d=Math.hypot(dx,dy);if(d<320&&d>0){n.vx+=dx/d*420*(1-d/320);n.vy+=dy/d*420*(1-d/320);}}
+    toast(KINDS[o.k].fact);dirty=true;
+  });
+  let vis=false,raf=0,last=0,t=0;
+  function frame(now){
+    raf=0;const dt=Math.min(.05,(now-(last||now))/1000);last=now;t+=dt;
+    for(const o of objs){
+      /* le pointeur repousse doucement les objets proches, un ressort les ramène */
+      let fx=0,fy=0;const dx=o.x+o.ox-px,dy=o.y+o.oy-py,d=Math.hypot(dx,dy),R=o.size*2.2;
+      if(fine&&d<R&&d>0){fx=dx/d*(1-d/R)*900;fy=dy/d*(1-d/R)*900;}
+      o.vx+=(-14*o.ox-4.2*o.vx+fx)*dt;o.vy+=(-14*o.oy-4.2*o.vy+fy)*dt;o.ox+=o.vx*dt;o.oy+=o.vy*dt;
+      o.s+=(1+(o===hot?.16:0)+o.punch-o.s)*Math.min(1,dt*6);o.punch*=Math.pow(.02,dt);
+      o.glow*=Math.pow(.05,dt);o.mesh.material.emissive.setHex(0xffa040);o.mesh.material.emissiveIntensity=Math.max(o.glow,o===hot?.35:0)*.6;
+      const k=reduced?0:1;
+      o.mesh.rotation.x+=(o.rs.x*k+o.spin.x)*dt;o.mesh.rotation.y+=(o.rs.y*k+o.spin.y)*dt;o.mesh.rotation.z+=(o.rs.z*k+o.spin.z)*dt;o.spin.multiplyScalar(Math.pow(.15,dt));
+      o.mesh.position.set(o.x+o.ox,-(o.y+o.oy+(reduced?0:Math.sin(t*1.1+o.ph)*6)),0);o.mesh.scale.setScalar(Math.max(.001,o.s)*o.size);
+    }
+    for(let i=bursts.length-1;i>=0;i--){const b=bursts[i];b.t+=dt;const a=b.p.geometry.attributes.position;
+      for(let j=0;j<b.vel.length/2;j++){b.vel[j*2+1]-=900*dt;a.array[j*3]+=b.vel[j*2]*dt;a.array[j*3+1]+=b.vel[j*2+1]*dt;}
+      a.needsUpdate=true;b.p.material.opacity=Math.max(0,1-b.t/1.1);
+      if(b.t>1.1){sc.remove(b.p);b.p.geometry.dispose();b.p.material.dispose();bursts.splice(i,1);}}
+    r.render(sc,cam);dirty=false;
+    if(vis)raf=requestAnimationFrame(frame);
+  }
+  const kick=()=>{if(!raf){last=0;raf=requestAnimationFrame(frame);}};
+  new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis)kick();},{rootMargin:'100px'}).observe(ft);
+  let lt=0;const relayout=()=>{clearTimeout(lt);lt=setTimeout(()=>{layout();kick();},200);};
+  new ResizeObserver(relayout).observe(ft);
+  (document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{layout();kick();});
+})();
 
 /* ---------- 3D ---------- */
 const stage=$('etal'),canvas=$('scene');
@@ -938,10 +1355,10 @@ for(const [x,ph] of[[-2.95,0],[2.95,1.7]]){
 }
 /* décor réaliste : modèles CC0 de Poly Haven (assets/models), chargés après la scène.
    Sans serveur (file://) ou si un fichier manque, l'étal reste tel quel. */
+const setDown=(o,x,z,ry,y=0)=>{o.rotation.y=ry;o.position.set(x,0,z);o.updateMatrixWorld(true);o.position.y=y-new THREE.Box3().setFromObject(o).min.y;scene.add(shadow(o));o.updateMatrixWorld(true);return new THREE.Box3().setFromObject(o);};
 if(THREE.GLTFLoader&&location.protocol!=='file:'){
   const loader=new THREE.GLTFLoader();
   const loadDecor=id=>new Promise((res,rej)=>loader.load(`assets/models/${id}/${id}_1k.gltf`,g=>res(g.scene),undefined,rej));
-  const setDown=(o,x,z,ry,y=0)=>{o.rotation.y=ry;o.position.set(x,0,z);o.updateMatrixWorld(true);o.position.y=y-new THREE.Box3().setFromObject(o).min.y;scene.add(shadow(o));o.updateMatrixWorld(true);return new THREE.Box3().setFromObject(o);};
   /* remplit une caisse ouverte (encore à l'origine) d'un tas d'objets, en une seule instance */
   const fill=(crate,src,n,seed,lie)=>{
     let mesh=null;src.traverse(c=>{if(c.isMesh&&!mesh)mesh=c;});
@@ -968,6 +1385,29 @@ if(THREE.GLTFLoader&&location.protocol!=='file:'){
     }
     if(m.folding_wooden_stool)setDown(m.folding_wooden_stool,-4.5,1.25,.6);
   });
+}
+/* décor Sweet Home 3D (assets/models/sh3d) : bibliothèque BlendSwap CC-0, palmiers de la bibliothèque Trees (Licence Art Libre).
+   Modèles OBJ mis à leur hauteur réelle (en m) ; en mode léger, seuls les éléments visibles de loin sont chargés. */
+if(THREE.OBJLoader&&THREE.MTLLoader&&location.protocol!=='file:'){
+  const H={chicken:.46,umbrella:2.0,barrel:.9,wheelbarrow:.57,bench:.51,plant:1.17,rock1:.5,rock2:.31,palm:9.5,fanPalm:3.0};
+  const cache={};
+  const loadSH=id=>cache[id]??=new Promise((res,rej)=>{const dir=`assets/models/sh3d/${id}/`;
+    new THREE.MTLLoader().setPath(dir).load(id+'.mtl',mtl=>{mtl.preload();
+      new THREE.OBJLoader().setMaterials(mtl).setPath(dir).load(id+'.obj',o=>{
+        o.traverse(c=>{if(c.isMesh)[].concat(c.material).forEach(mm=>{if(mm.map){mm.map.encoding=THREE.sRGBEncoding;mm.color.set(0xffffff);}});});
+        const b=new THREE.Box3().setFromObject(o);o.scale.setScalar(H[id]/(b.max.y-b.min.y));res(o);
+      },undefined,rej);},undefined,rej);});
+  const put=(id,x,z,ry=0,s=1)=>loadSH(id).then(src=>{const o=src.clone();o.scale.multiplyScalar(s);setDown(o,x,z,ry);}).catch(()=>{});
+  /* au fond : palmiers et parasols des étals voisins */
+  put('palm',-9,-10.5,0,1);put('palm',8.5,-11.5,1.2,.85);put('palm',-16,-13,2.1,.95);put('palm',15,-14,.6,1.05);
+  put('fanPalm',-6.6,-5.2,.4,.9);put('fanPalm',6.2,-4.6,1.9,1);
+  put('umbrella',-7.4,-6.2,.3,1.1);put('umbrella',4.6,-7,1.1,1.2);put('umbrella',-12.5,-7.5,2,1.15);
+  /* au premier plan : poules du marché */
+  put('chicken',.6,2.15,.8);put('chicken',1.35,2.55,-2.2,.9);put('chicken',2.1,1.95,2.6,1.05);
+  if(!lite){
+    put('wheelbarrow',-5.9,1.3,.5);put('barrel',3.85,-1.15,.4);put('plant',-3.8,-1.6,0,.9);
+    put('bench',1.8,-6.4,0);put('rock1',-6.6,2.7,.7);put('rock2',4.6,2.9,2.2,.8);
+  }
 }
 const DUST=lite?90:260;const dGeo=new THREE.BufferGeometry();const dPos=new Float32Array(DUST*3);const dr=rng(5);
 for(let i=0;i<DUST;i++){dPos[i*3]=(dr()-.5)*7;dPos[i*3+1]=1+dr()*2.2;dPos[i*3+2]=-1+dr()*2.8;}

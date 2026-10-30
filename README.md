@@ -10,7 +10,7 @@ Ouvrez `index.html` dans un navigateur, ou servez le dossier :
 npx serve .
 ```
 
-Le décor réaliste (caisses de litchis et de patates douces, tabouret) se charge depuis `assets/models/`, ce qui demande un serveur : ouvert en double-cliquant sur `index.html`, l'étal s'affiche sans ce décor. En mode léger (mobile), seules la caisse et les litchis sont chargés (~3 Mo au lieu de ~7 Mo). Licences : [assets/models/CREDITS.md](assets/models/CREDITS.md).
+Le décor réaliste (caisses de litchis et de patates douces, tabouret, poules, parasols, palmiers, brouette, tonneau…) se charge depuis `assets/models/`, ce qui demande un serveur : ouvert en double-cliquant sur `index.html`, l'étal s'affiche sans ce décor. En mode léger (mobile), seules la caisse et les litchis sont chargés (~3 Mo au lieu de ~7 Mo). Licences : [assets/models/CREDITS.md](assets/models/CREDITS.md).
 
 ## Technologies
 
